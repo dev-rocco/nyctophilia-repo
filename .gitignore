@@ -1,0 +1,4 @@
+# ignore game settings files
+*.dat
+*.sh
+autosave

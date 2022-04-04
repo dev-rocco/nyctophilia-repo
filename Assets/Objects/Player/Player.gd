@@ -174,8 +174,8 @@ func _process(delta):
 		health -= (starting_oxygen_depletion_rate * 3) * delta
 	
 	# Death check
-	if health <= 0:
-		dying()
+	#if health <= 0:
+	#	dying()
 	
 	# Water lighting (darkness)
 	if water_lighting_enabled:
