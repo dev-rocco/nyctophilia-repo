@@ -1,8 +1,4 @@
 # ignore game settings files
 *.dat
 *.sh
-<<<<<<< HEAD
 **/autosave
-=======
-autosave
->>>>>>> main-menu
