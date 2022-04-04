@@ -29,10 +29,10 @@ func _process(delta):
 func get_lerped_dir(delta):
 	return lerp(global_transform.origin, cscene.get_player().global_transform.origin, delta)
 
-# 1 in 10 chance
+# 1 in 5 chance
 func decide_attack():
 	print("deciding attack")
-	var decision_number = rng.randi_range(1,10)
+	var decision_number = rng.randi_range(1,5)
 	# 4 is arbitrary
 	if decision_number == 4:
 		attack()

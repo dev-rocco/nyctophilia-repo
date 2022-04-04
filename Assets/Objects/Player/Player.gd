@@ -100,7 +100,7 @@ var being_attacked = false
 func try_enemy():
 	if water_lighting_enabled:
 		fake_enemy.decide_attack()
-		enemy_try_timer.start(sanity/3)
+		enemy_try_timer.start(sanity/2)
 	else:
 		enemy_try_timer.stop()
 
