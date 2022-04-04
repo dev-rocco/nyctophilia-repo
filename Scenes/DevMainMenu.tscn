@@ -15,6 +15,7 @@ font_data = ExtResource( 4 )
 
 [node name="Sprite" type="Sprite" parent="bg"]
 position = Vector2( 562, 276 )
+scale = Vector2( 0.8, 0.8 )
 z_index = 2
 texture = ExtResource( 3 )
 
