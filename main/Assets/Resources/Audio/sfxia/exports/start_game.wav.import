@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/start_game.wav-22328e256402dc2a93bb2d2b1ba871b8.sample"
+
+[deps]
+
+source_file="res://Assets/Resources/Audio/sfxia/exports/start_game.wav"
+dest_files=[ "res://.import/start_game.wav-22328e256402dc2a93bb2d2b1ba871b8.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

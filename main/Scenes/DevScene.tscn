@@ -1,0 +1,381 @@
+[gd_scene load_steps=41 format=2]
+
+[ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Objects/Caves/DarknessTrigger.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Scenes/DevScene.gd" type="Script" id=3]
+[ext_resource path="res://Assets/Objects/SceneTransitionTrigger/SceneTransitionTrigger.tscn" type="PackedScene" id=4]
+[ext_resource path="res://Assets/Objects/Store/Store.tscn" type="PackedScene" id=5]
+[ext_resource path="res://Assets/Resources/Audio/sfxia/exports/start_game.wav" type="AudioStream" id=6]
+[ext_resource path="res://Assets/Objects/Caves/Cave1.tscn" type="PackedScene" id=7]
+[ext_resource path="res://Assets/Resources/OccluderPolygons/Rect.tres" type="OccluderPolygon2D" id=8]
+[ext_resource path="res://Assets/Objects/Caves/CaveWall.tscn" type="PackedScene" id=9]
+[ext_resource path="res://Assets/Resources/Images/stone_tile_1.png" type="Texture" id=10]
+[ext_resource path="res://Assets/Objects/Caves/WaterWalls.gd" type="Script" id=11]
+[ext_resource path="res://Assets/Objects/FakeEnemy/FakeEnemy.tscn" type="PackedScene" id=12]
+[ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Light.ttf" type="DynamicFontData" id=13]
+[ext_resource path="res://Assets/Objects/Caves/Cave2.tscn" type="PackedScene" id=14]
+[ext_resource path="res://Assets/Objects/Caves/Cave3.tscn" type="PackedScene" id=15]
+
+[sub_resource type="RectangleShape2D" id=8]
+extents = Vector2( 298, 32 )
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 512, 32 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 32, 300 )
+
+[sub_resource type="QuadMesh" id=5]
+
+[sub_resource type="Gradient" id=10]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.176471, 0.176471, 0.176471, 1 )
+
+[sub_resource type="GradientTexture" id=7]
+gradient = SubResource( 10 )
+
+[sub_resource type="Gradient" id=22]
+offsets = PoolRealArray( 0, 0.295082, 1 )
+colors = PoolColorArray( 0.360784, 0.654902, 0.615686, 1, 0.0156863, 0.113725, 0.101961, 1, 0.0156863, 0.113725, 0.101961, 1 )
+
+[sub_resource type="GradientTexture" id=21]
+gradient = SubResource( 22 )
+
+[sub_resource type="RectangleShape2D" id=9]
+extents = Vector2( 181, 285 )
+
+[sub_resource type="QuadMesh" id=23]
+
+[sub_resource type="Gradient" id=26]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.290196, 0.290196, 0.290196, 1 )
+
+[sub_resource type="GradientTexture" id=27]
+gradient = SubResource( 26 )
+
+[sub_resource type="QuadMesh" id=28]
+
+[sub_resource type="Gradient" id=29]
+offsets = PoolRealArray( 1 )
+colors = PoolColorArray( 1, 1, 1, 1 )
+
+[sub_resource type="GradientTexture" id=30]
+gradient = SubResource( 29 )
+
+[sub_resource type="DynamicFont" id=31]
+size = 100
+font_data = ExtResource( 13 )
+
+[sub_resource type="Theme" id=32]
+default_font = SubResource( 31 )
+
+[sub_resource type="RectangleShape2D" id=18]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="QuadMesh" id=15]
+
+[sub_resource type="Gradient" id=16]
+offsets = PoolRealArray( 0, 0.0437158, 1 )
+colors = PoolColorArray( 0.360784, 0.654902, 0.615686, 1, 0.0156863, 0.113725, 0.101961, 0.901961, 0.0156863, 0.113725, 0.101961, 1 )
+
+[sub_resource type="GradientTexture" id=17]
+gradient = SubResource( 16 )
+
+[sub_resource type="RectangleShape2D" id=19]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="QuadMesh" id=20]
+size = Vector2( 2, 2 )
+
+[sub_resource type="Gradient" id=24]
+offsets = PoolRealArray( 0 )
+colors = PoolColorArray( 0.458824, 0.72549, 0.819608, 1 )
+
+[sub_resource type="GradientTexture" id=25]
+gradient = SubResource( 24 )
+
+[node name="DevScene" type="Node2D"]
+script = ExtResource( 3 )
+player_path = NodePath("Player")
+water_walls_node = NodePath("Underwater1/WaterWalls")
+
+[node name="Player" parent="." instance=ExtResource( 1 )]
+position = Vector2( 500, 400 )
+fake_enemy_path = NodePath("../FakeEnemy")
+
+[node name="FakeEnemy" parent="." instance=ExtResource( 12 )]
+
+[node name="MainRoom" type="Node2D" parent="."]
+
+[node name="Floor" type="StaticBody2D" parent="MainRoom"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Floor"]
+position = Vector2( 298, 632 )
+shape = SubResource( 8 )
+
+[node name="Ceiling" type="StaticBody2D" parent="MainRoom"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Ceiling"]
+position = Vector2( 512, -32 )
+shape = SubResource( 1 )
+
+[node name="Wall" type="StaticBody2D" parent="MainRoom"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall"]
+position = Vector2( -32, 300 )
+shape = SubResource( 2 )
+
+[node name="Wall2" type="StaticBody2D" parent="MainRoom"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall2"]
+position = Vector2( 1056, 300 )
+shape = SubResource( 2 )
+
+[node name="Wall3" type="StaticBody2D" parent="MainRoom"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall3"]
+position = Vector2( 1056, 900 )
+shape = SubResource( 2 )
+
+[node name="Wall4" type="StaticBody2D" parent="MainRoom"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall4"]
+position = Vector2( 628, 900 )
+shape = SubResource( 2 )
+
+[node name="Backgrounds" type="Node2D" parent="MainRoom"]
+
+[node name="Bg1" type="MeshInstance2D" parent="MainRoom/Backgrounds"]
+position = Vector2( 512, 300 )
+scale = Vector2( 1024, 600 )
+z_index = -1
+mesh = SubResource( 5 )
+texture = SubResource( 7 )
+
+[node name="Bg2" type="MeshInstance2D" parent="MainRoom/Backgrounds"]
+position = Vector2( 842, 900 )
+scale = Vector2( 364, 600 )
+z_index = -1
+mesh = SubResource( 5 )
+texture = SubResource( 7 )
+
+[node name="BgWater" type="MeshInstance2D" parent="MainRoom/Backgrounds"]
+position = Vector2( 842, 915 )
+rotation = 1.5708
+scale = Vector2( 570, 365 )
+z_index = -1
+mesh = SubResource( 5 )
+texture = SubResource( 21 )
+
+[node name="Water" type="Area2D" parent="MainRoom"]
+position = Vector2( 660, 640 )
+collision_layer = 36
+collision_mask = 36
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Water"]
+position = Vector2( 182, 275 )
+shape = SubResource( 9 )
+
+[node name="ToUnderwaterTrigger" parent="MainRoom" instance=ExtResource( 4 )]
+position = Vector2( 850, 900 )
+scale = Vector2( 200, 200 )
+new_loc = Vector2( 10000, 0 )
+player_path = NodePath("../../Player")
+
+[node name="GetOutLoc" type="Node2D" parent="MainRoom"]
+position = Vector2( 600, 500 )
+
+[node name="Store" parent="MainRoom" instance=ExtResource( 5 )]
+position = Vector2( 200, 550 )
+player_path = NodePath("../../Player")
+
+[node name="TrappedTrigger" parent="MainRoom" instance=ExtResource( 4 )]
+position = Vector2( 50, 575 )
+scale = Vector2( 50, 25 )
+new_loc = Vector2( 500, 400 )
+player_path = NodePath("../../Player")
+
+[node name="Sky" type="MeshInstance2D" parent="MainRoom"]
+position = Vector2( 0, 5000 )
+scale = Vector2( 10000, 20000 )
+z_index = -10
+mesh = SubResource( 23 )
+texture = SubResource( 27 )
+
+[node name="BigArrow" type="Node2D" parent="MainRoom"]
+position = Vector2( 842, 500 )
+scale = Vector2( 0.5, 0.5 )
+
+[node name="Mesh1" type="MeshInstance2D" parent="MainRoom/BigArrow"]
+scale = Vector2( 20, 200 )
+mesh = SubResource( 28 )
+texture = SubResource( 30 )
+
+[node name="Mesh2" type="MeshInstance2D" parent="MainRoom/BigArrow"]
+position = Vector2( 38.5, 57.5 )
+rotation = 0.785398
+scale = Vector2( 20, 100 )
+mesh = SubResource( 28 )
+texture = SubResource( 30 )
+
+[node name="Mesh3" type="MeshInstance2D" parent="MainRoom/BigArrow"]
+position = Vector2( -38.5, 57.5 )
+rotation = -0.785398
+scale = Vector2( 20, 100 )
+mesh = SubResource( 28 )
+texture = SubResource( 30 )
+
+[node name="Label" type="Label" parent="MainRoom/BigArrow"]
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+margin_left = -120.0
+margin_top = -247.0
+margin_right = 120.0
+margin_bottom = -114.0
+theme = SubResource( 32 )
+text = "Dive"
+
+[node name="Underwater1" type="Node2D" parent="."]
+position = Vector2( 10000, 0 )
+
+[node name="WaterWalls" type="Node2D" parent="Underwater1"]
+script = ExtResource( 11 )
+
+[node name="Wall1" parent="Underwater1/WaterWalls" instance=ExtResource( 9 )]
+position = Vector2( 175, 5000 )
+scale = Vector2( 10, 5000 )
+
+[node name="Wall2" parent="Underwater1/WaterWalls" instance=ExtResource( 9 )]
+position = Vector2( -500, 5000 )
+scale = Vector2( 10, 5000 )
+
+[node name="Water" type="Area2D" parent="Underwater1"]
+position = Vector2( -166, 0 )
+scale = Vector2( 0.66, 1 )
+collision_layer = 36
+collision_mask = 36
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Underwater1/Water"]
+position = Vector2( 0, 5000 )
+scale = Vector2( 500, 5000 )
+shape = SubResource( 18 )
+
+[node name="bg" type="MeshInstance2D" parent="Underwater1/Water"]
+position = Vector2( 0, 5000 )
+rotation = 1.5708
+scale = Vector2( 10000, 1000 )
+mesh = SubResource( 15 )
+texture = SubResource( 17 )
+
+[node name="Ramp" type="StaticBody2D" parent="Underwater1"]
+position = Vector2( -500, 10 )
+rotation = 0.349066
+scale = Vector2( 100, 10 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Underwater1/Ramp"]
+shape = SubResource( 19 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Underwater1/Ramp"]
+mesh = SubResource( 20 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="Underwater1/Ramp"]
+occluder = ExtResource( 8 )
+
+[node name="Floor" type="StaticBody2D" parent="Underwater1"]
+position = Vector2( -691, -24 )
+scale = Vector2( 100, 10 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Underwater1/Floor"]
+shape = SubResource( 19 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Underwater1/Floor"]
+mesh = SubResource( 20 )
+
+[node name="SceneTransitionTrigger" parent="Underwater1" instance=ExtResource( 4 )]
+position = Vector2( -650, -50 )
+scale = Vector2( 100, 100 )
+loc_or_obj = "obj"
+new_loc = Vector2( 0, 0 )
+new_loc_obj_path = NodePath("../../MainRoom/GetOutLoc")
+player_path = NodePath("../../Player")
+
+[node name="DarknessTrigger" parent="Underwater1" instance=ExtResource( 2 )]
+position = Vector2( 0, 5200 )
+scale = Vector2( 5000, 5000 )
+
+[node name="Sky" type="MeshInstance2D" parent="Underwater1"]
+position = Vector2( 0, 5000 )
+scale = Vector2( 10000, 20000 )
+z_index = -10
+mesh = SubResource( 23 )
+texture = SubResource( 25 )
+
+[node name="Sky2" type="Sprite" parent="Underwater1"]
+position = Vector2( 0, 5300 )
+scale = Vector2( 2, 2 )
+z_index = -5
+texture = ExtResource( 10 )
+region_enabled = true
+region_rect = Rect2( 0, 0, 5000, 5000 )
+
+[node name="Caves" type="Node2D" parent="Underwater1"]
+
+[node name="Cave1" parent="Underwater1/Caves" instance=ExtResource( 7 )]
+position = Vector2( -500, 700 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+
+[node name="Cave1_2" parent="Underwater1/Caves" instance=ExtResource( 7 )]
+position = Vector2( 175, 4500 )
+rotation = 3.14159
+scale = Vector2( -1, -1 )
+
+[node name="Cave2" parent="Underwater1/Caves" instance=ExtResource( 14 )]
+position = Vector2( 175, 1250 )
+
+[node name="Cave2_2" parent="Underwater1/Caves" instance=ExtResource( 14 )]
+position = Vector2( -500, 4000 )
+rotation = 3.14159
+scale = Vector2( 1, -1 )
+
+[node name="Cave3" parent="Underwater1/Caves" instance=ExtResource( 15 )]
+position = Vector2( 175, 2000 )
+
+[node name="Cave3_2" parent="Underwater1/Caves" instance=ExtResource( 15 )]
+position = Vector2( -500, 6000 )
+scale = Vector2( -1, 1 )
+
+[node name="TempBoundary" type="StaticBody2D" parent="Underwater1"]
+position = Vector2( 175, -200 )
+rotation = 1.5708
+scale = Vector2( 200, 10 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Underwater1/TempBoundary"]
+shape = SubResource( 19 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="Underwater1/TempBoundary"]
+mesh = SubResource( 20 )
+
+[node name="start_game_sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 6 )
+autoplay = true

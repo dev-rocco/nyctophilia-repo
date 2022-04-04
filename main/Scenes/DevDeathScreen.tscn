@@ -1,0 +1,66 @@
+[gd_scene load_steps=8 format=2]
+
+[ext_resource path="res://Assets/Resources/Fonts/DynamicPresets/Montserrat.tres" type="DynamicFont" id=1]
+[ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Bold.ttf" type="DynamicFontData" id=2]
+
+[sub_resource type="DynamicFont" id=2]
+size = 64
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=3]
+default_font = SubResource( 2 )
+
+[sub_resource type="Theme" id=1]
+default_font = ExtResource( 1 )
+
+[sub_resource type="DynamicFont" id=4]
+size = 12
+font_data = ExtResource( 2 )
+
+[sub_resource type="Theme" id=5]
+default_font = SubResource( 4 )
+
+[node name="DevDeathScene" type="Control"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+
+[node name="YouWon" type="Label" parent="."]
+anchor_left = 0.5
+anchor_right = 0.5
+margin_left = -407.5
+margin_top = 50.0
+margin_right = 407.5
+margin_bottom = 129.0
+theme = SubResource( 3 )
+text = "You won!"
+align = 1
+
+[node name="Text" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -407.5
+margin_top = -70.5
+margin_right = 407.5
+margin_bottom = 70.5
+theme = SubResource( 1 )
+text = "For now.
+
+The game is unfinished. I underestimated how long it would take to implement the features I planned.
+The game will be far better in just a couple weeks; Check up on the store page once in a while!
+
+Thanks for playing so far into this buggy and unfinished mess hahaha"
+align = 1
+
+[node name="Signoff" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -407.5
+margin_top = 100.5
+margin_right = 407.5
+margin_bottom = 135.5
+theme = SubResource( 5 )
+text = "-Rocco (the dev)"

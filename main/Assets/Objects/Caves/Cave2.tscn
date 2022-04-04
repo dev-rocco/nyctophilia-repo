@@ -1,0 +1,170 @@
+[gd_scene load_steps=5 format=2]
+
+[ext_resource path="res://Assets/Objects/Caves/CaveWall.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Objects/Caves/CaveEntrance.tscn" type="PackedScene" id=2]
+[ext_resource path="res://Assets/Objects/ItemRock/Clusters/ItemRockCluster1.tscn" type="PackedScene" id=3]
+[ext_resource path="res://Assets/Objects/Star/Star.tscn" type="PackedScene" id=4]
+
+[node name="Cave1" type="Node2D"]
+
+[node name="CaveWalls" type="Node2D" parent="."]
+
+[node name="CaveWall" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 100, 0 )
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall2" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 100, -150 )
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall3" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 311, -18 )
+rotation = -0.174728
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall4" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 292, -178 )
+rotation = -0.261799
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall5" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 514, -63 )
+rotation = -0.261799
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall6" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 474, -267 )
+rotation = -0.64942
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall7" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 699, -153 )
+rotation = -0.64942
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall8" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 887, -245 )
+rotation = -0.258709
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall9" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 656, -373 )
+rotation = -0.396923
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall10" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 859, -414 )
+rotation = 0.049966
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall11" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1070, -424 )
+rotation = -0.127282
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall12" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1095, -266 )
+rotation = 0.0415183
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall13" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1309, -261 )
+rotation = -0.00937542
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall14" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1212, -532 )
+rotation = -1.1877
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall15" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1255, -735 )
+rotation = -1.52908
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall16" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1359, -848 )
+rotation = -0.0324271
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall17" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1473, -740 )
+rotation = 1.42155
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall18" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1480, -528 )
+rotation = 1.66423
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall19" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1522, -271 )
+rotation = -0.0891747
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall20" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1581, -456 )
+rotation = -0.250825
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall21" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1733, -307 )
+rotation = -0.250825
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall22" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1788, -498 )
+rotation = -0.130674
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall23" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1943, -333 )
+rotation = -0.0039224
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall24" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 2156, -323 )
+rotation = 0.0847534
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall25" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 1998, -522 )
+rotation = -0.0821329
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall26" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 2212, -549 )
+rotation = -0.17234
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall27" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 2363, -339 )
+rotation = -0.238937
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall28" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 2510, -453 )
+rotation = -1.10968
+scale = Vector2( 100, 10 )
+
+[node name="CaveWall29" parent="CaveWalls" instance=ExtResource( 1 )]
+position = Vector2( 2423, -543 )
+rotation = 0.227331
+scale = Vector2( 100, 10 )
+
+[node name="CaveEntrance" parent="." instance=ExtResource( 2 )]
+position = Vector2( 0, -75 )
+
+[node name="FalloutLoc" type="Node2D" parent="."]
+position = Vector2( 100, -75 )
+
+[node name="ItemRockCluster1" parent="." instance=ExtResource( 3 )]
+position = Vector2( 1309, -288 )
+z_index = -1
+
+[node name="ItemRockCluster2" parent="." instance=ExtResource( 3 )]
+position = Vector2( 2253, -343 )
+z_index = -1
+
+[node name="Area2D" parent="." instance=ExtResource( 4 )]
+position = Vector2( 2345, -439 )

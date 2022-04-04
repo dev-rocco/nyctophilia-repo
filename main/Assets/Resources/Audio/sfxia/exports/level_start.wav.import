@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/level_start.wav-f64817d866bc4a4c114d91e10e1bf335.sample"
+
+[deps]
+
+source_file="res://Assets/Resources/Audio/sfxia/exports/level_start.wav"
+dest_files=[ "res://.import/level_start.wav-f64817d866bc4a4c114d91e10e1bf335.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

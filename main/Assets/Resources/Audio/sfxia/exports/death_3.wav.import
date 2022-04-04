@@ -1,0 +1,21 @@
+[remap]
+
+importer="wav"
+type="AudioStreamSample"
+path="res://.import/death_3.wav-6402c9f5d3b6225a6d0f800e79047393.sample"
+
+[deps]
+
+source_file="res://Assets/Resources/Audio/sfxia/exports/death_3.wav"
+dest_files=[ "res://.import/death_3.wav-6402c9f5d3b6225a6d0f800e79047393.sample" ]
+
+[params]
+
+force/8_bit=false
+force/mono=false
+force/max_rate=false
+force/max_rate_hz=44100
+edit/trim=false
+edit/normalize=false
+edit/loop=false
+compress/mode=0

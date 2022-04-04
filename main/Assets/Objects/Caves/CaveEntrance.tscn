@@ -1,0 +1,80 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Resources/OccluderPolygons/Rect.tres" type="OccluderPolygon2D" id=1]
+[ext_resource path="res://Assets/Objects/Caves/CaveEntrance.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 6.64, 10 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 11, 1.1 )
+
+[sub_resource type="RectangleShape2D" id=3]
+extents = Vector2( 1, 1 )
+
+[node name="CaveEntrance" type="Node2D"]
+script = ExtResource( 2 )
+
+[node name="CE_Trigger" type="Area2D" parent="."]
+position = Vector2( -250, 0 )
+scale = Vector2( 75, 20 )
+collision_layer = 64
+collision_mask = 64
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CE_Trigger"]
+position = Vector2( 6.66667, 0 )
+shape = SubResource( 1 )
+
+[node name="Occluders" type="Node2D" parent="."]
+scale = Vector2( 10, 1 )
+
+[node name="UpperOccluder" type="LightOccluder2D" parent="Occluders"]
+position = Vector2( 0, -360 )
+scale = Vector2( 1, 250 )
+occluder = ExtResource( 1 )
+
+[node name="LowerOccluder" type="LightOccluder2D" parent="Occluders"]
+position = Vector2( 0, 360 )
+scale = Vector2( 1, 250 )
+occluder = ExtResource( 1 )
+
+[node name="Colliders" type="Node2D" parent="."]
+
+[node name="UpperCollider" type="StaticBody2D" parent="Colliders"]
+position = Vector2( 0, -360 )
+scale = Vector2( 1, 250 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/UpperCollider"]
+shape = SubResource( 2 )
+
+[node name="LowerCollider" type="StaticBody2D" parent="Colliders"]
+position = Vector2( 0, 360 )
+scale = Vector2( 1, 250 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Colliders/LowerCollider"]
+shape = SubResource( 2 )
+
+[node name="Ledge" type="StaticBody2D" parent="."]
+position = Vector2( -45, 75 )
+
+[node name="LowerOccluder2" type="CollisionShape2D" parent="Ledge"]
+scale = Vector2( 50, 10 )
+shape = SubResource( 3 )
+
+[node name="LowerOccluder" type="LightOccluder2D" parent="Ledge"]
+scale = Vector2( 50, 10 )
+occluder = ExtResource( 1 )
+
+[node name="Ledge2" type="StaticBody2D" parent="."]
+position = Vector2( -45, -75 )
+
+[node name="LowerOccluder2" type="CollisionShape2D" parent="Ledge2"]
+scale = Vector2( 50, 10 )
+shape = SubResource( 3 )
+
+[node name="LowerOccluder" type="LightOccluder2D" parent="Ledge2"]
+scale = Vector2( 50, 10 )
+occluder = ExtResource( 1 )
+
+[connection signal="area_shape_entered" from="CE_Trigger" to="." method="_on_CE_Trigger_area_shape_entered"]
+[connection signal="area_shape_exited" from="CE_Trigger" to="." method="_on_CE_Trigger_area_shape_exited"]

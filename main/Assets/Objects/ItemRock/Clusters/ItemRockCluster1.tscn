@@ -1,0 +1,46 @@
+[gd_scene load_steps=4 format=2]
+
+[ext_resource path="res://Assets/Objects/ItemRock/ItemRock.tscn" type="PackedScene" id=1]
+[ext_resource path="res://Assets/Objects/ItemRock/Clusters/ScriptCollider.gd" type="Script" id=2]
+
+[sub_resource type="RectangleShape2D" id=1]
+extents = Vector2( 85, 50 )
+
+[node name="ItemRockCluster1" type="Node2D"]
+
+[node name="ItemRocks" type="Node2D" parent="."]
+
+[node name="ItemRock" parent="ItemRocks" instance=ExtResource( 1 )]
+scale = Vector2( 3, 3 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="ItemRock2" parent="ItemRocks" instance=ExtResource( 1 )]
+position = Vector2( 40, 0 )
+rotation = 1.0472
+scale = Vector2( 3, 3 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="ItemRock3" parent="ItemRocks" instance=ExtResource( 1 )]
+position = Vector2( -50, 0 )
+rotation = -0.523599
+scale = Vector2( 3, 3 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="ItemRock4" parent="ItemRocks" instance=ExtResource( 1 )]
+position = Vector2( -20, -30 )
+rotation = -0.523599
+scale = Vector2( 3, 3 )
+collision_layer = 3
+collision_mask = 3
+
+[node name="ScriptCollider" type="StaticBody2D" parent="."]
+collision_layer = 16
+collision_mask = 16
+script = ExtResource( 2 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="ScriptCollider"]
+position = Vector2( -4.5, -15 )
+shape = SubResource( 1 )

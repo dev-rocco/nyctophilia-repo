@@ -1,0 +1,30 @@
+[gd_scene load_steps=6 format=2]
+
+[ext_resource path="res://Assets/Resources/OccluderPolygons/Rect.tres" type="OccluderPolygon2D" id=1]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 2, 2 )
+
+[sub_resource type="Gradient" id=2]
+colors = PoolColorArray( 1, 0.560784, 0, 1, 1, 0.694118, 0.219608, 1 )
+
+[sub_resource type="GradientTexture" id=3]
+gradient = SubResource( 2 )
+
+[sub_resource type="RectangleShape2D" id=4]
+extents = Vector2( 1, 1 )
+
+[node name="CaveWall" type="StaticBody2D"]
+collision_layer = 3
+collision_mask = 3
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+rotation = 1.5708
+mesh = SubResource( 1 )
+texture = SubResource( 3 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+shape = SubResource( 4 )
+
+[node name="LightOccluder2D" type="LightOccluder2D" parent="."]
+occluder = ExtResource( 1 )

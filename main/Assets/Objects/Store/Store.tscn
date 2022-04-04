@@ -1,0 +1,193 @@
+[gd_scene load_steps=15 format=2]
+
+[ext_resource path="res://Assets/Objects/Store/UpgradesContainer.gd" type="Script" id=1]
+[ext_resource path="res://Assets/Objects/Store/Store.gd" type="Script" id=2]
+[ext_resource path="res://Assets/Resources/Audio/sfxia/exports/select.wav" type="AudioStream" id=3]
+[ext_resource path="res://Assets/Objects/Store/UpgradeButton.gd" type="Script" id=4]
+[ext_resource path="res://Assets/Resources/Fonts/DynamicPresets/Montserrat.tres" type="DynamicFont" id=5]
+[ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Light.ttf" type="DynamicFontData" id=6]
+[ext_resource path="res://Assets/Resources/Fonts/DynamicPresets/MontserratBold.tres" type="DynamicFont" id=7]
+
+[sub_resource type="QuadMesh" id=1]
+size = Vector2( 2, 2 )
+
+[sub_resource type="RectangleShape2D" id=2]
+extents = Vector2( 1, 1 )
+
+[sub_resource type="DynamicFont" id=9]
+size = 32
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=4]
+default_font = SubResource( 9 )
+
+[sub_resource type="DynamicFont" id=7]
+size = 12
+font_data = ExtResource( 6 )
+
+[sub_resource type="Theme" id=8]
+default_font = SubResource( 7 )
+
+[sub_resource type="Theme" id=6]
+default_font = ExtResource( 5 )
+
+[node name="Store" type="StaticBody2D"]
+collision_layer = 19
+collision_mask = 19
+script = ExtResource( 2 )
+
+[node name="Mesh" type="MeshInstance2D" parent="."]
+scale = Vector2( 100, 50 )
+mesh = SubResource( 1 )
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+scale = Vector2( 100, 50 )
+shape = SubResource( 2 )
+
+[node name="Label" type="Label" parent="."]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -47.5
+margin_top = -93.5
+margin_right = 47.5
+margin_bottom = -50.5
+theme = SubResource( 4 )
+text = "Store"
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource( 3 )
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="Control" type="Control" parent="CanvasLayer"]
+visible = false
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -20.0
+margin_top = -20.0
+margin_right = 20.0
+margin_bottom = 20.0
+theme = SubResource( 8 )
+
+[node name="Panel" type="Panel" parent="CanvasLayer/Control"]
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+margin_left = -300.0
+margin_top = -150.0
+margin_right = 300.0
+margin_bottom = 150.0
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel"]
+margin_left = 5.0
+margin_top = 5.0
+margin_right = 82.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 7 )
+text = "Diving Store"
+
+[node name="Items" type="Control" parent="CanvasLayer/Control/Panel"]
+margin_left = 5.0
+margin_top = 45.0
+margin_right = 45.0
+margin_bottom = 85.0
+
+[node name="Upgrades" type="VBoxContainer" parent="CanvasLayer/Control/Panel/Items"]
+margin_right = 150.0
+margin_bottom = 250.0
+theme = SubResource( 6 )
+script = ExtResource( 1 )
+price_check_timer_path = NodePath("../../../../../PriceCheckTimer")
+
+[node name="OxygenDepletion" type="Button" parent="CanvasLayer/Control/Panel/Items/Upgrades"]
+margin_right = 150.0
+margin_bottom = 80.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Oxygen"
+script = ExtResource( 4 )
+store_type = "oxygen"
+
+[node name="LevelText" type="Label" parent="CanvasLayer/Control/Panel/Items/Upgrades/OxygenDepletion"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -7.0
+margin_right = 56.0
+margin_bottom = 7.0
+text = "Level null"
+
+[node name="OxygenRegen" type="Button" parent="CanvasLayer/Control/Panel/Items/Upgrades"]
+margin_top = 84.0
+margin_right = 150.0
+margin_bottom = 165.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Oxygen Regen"
+script = ExtResource( 4 )
+store_type = "oxygen_regen"
+
+[node name="LevelText" type="Label" parent="CanvasLayer/Control/Panel/Items/Upgrades/OxygenRegen"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -7.0
+margin_right = 56.0
+margin_bottom = 7.0
+text = "Level null"
+
+[node name="SwimSpeed" type="Button" parent="CanvasLayer/Control/Panel/Items/Upgrades"]
+margin_top = 169.0
+margin_right = 150.0
+margin_bottom = 250.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+text = "Swim Speed"
+script = ExtResource( 4 )
+store_type = "swim_speed"
+
+[node name="LevelText" type="Label" parent="CanvasLayer/Control/Panel/Items/Upgrades/SwimSpeed"]
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+margin_left = 10.0
+margin_top = -7.0
+margin_right = 56.0
+margin_bottom = 7.0
+text = "Level null"
+
+[node name="Label" type="Label" parent="CanvasLayer/Control/Panel/Items"]
+margin_top = -16.0
+margin_right = 60.0
+text = "Upgrades"
+
+[node name="GoldCounter" type="Label" parent="CanvasLayer/Control/Panel"]
+anchor_left = 1.0
+anchor_right = 1.0
+margin_left = -45.0
+margin_top = 5.0
+margin_right = -5.0
+margin_bottom = 19.0
+custom_fonts/font = ExtResource( 7 )
+text = "$null"
+align = 2
+
+[node name="OpenDelay" type="Timer" parent="."]
+
+[node name="PriceCheckTimer" type="Timer" parent="."]
+
+[connection signal="pressed" from="CanvasLayer/Control/Panel/Items/Upgrades/OxygenDepletion" to="CanvasLayer/Control/Panel/Items/Upgrades/OxygenDepletion" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Panel/Items/Upgrades/OxygenRegen" to="CanvasLayer/Control/Panel/Items/Upgrades/OxygenRegen" method="_on_pressed"]
+[connection signal="pressed" from="CanvasLayer/Control/Panel/Items/Upgrades/SwimSpeed" to="CanvasLayer/Control/Panel/Items/Upgrades/SwimSpeed" method="_on_pressed"]
+[connection signal="timeout" from="OpenDelay" to="." method="_on_OpenDelay_timeout"]
+[connection signal="timeout" from="PriceCheckTimer" to="CanvasLayer/Control/Panel/Items/Upgrades" method="_on_PriceCheckTimer_timeout"]
