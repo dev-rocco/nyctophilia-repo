@@ -111,27 +111,33 @@ func _on_ApplyChanges_pressed():
 #### SAVING AND LOADING ####
 onready var apply_timer = $ApplyTimer
 
+const GAMEFILES_LOC = "res://gamefiles/"
 const SAVE_LOC = "res://gamefiles/settings.dat"
 const AUTOLOAD_LOC = "res://gamefiles/autoload"
 var display_res = Vector2()
 var load_autoload = false
+var temp_dir = Directory.new()
 
 func _ready():
-	var temp_dir = Directory.new()
 	if temp_dir.file_exists(AUTOLOAD_LOC) and temp_dir.file_exists(SAVE_LOC):
 		print("autoloaded settings")
 		$Options/VBoxContainer/Autoload.pressed = true
 		load_all_settings()
 
 func save_all_settings():
-	var temp_file = File.new()
-	temp_file.open(SAVE_LOC, File.WRITE)
-	#
-	temp_file.store_var(Vector2(res_width, res_height))
-	temp_file.store_var(screen_mode)
-	temp_file.store_var(display_vsync)
-	#
-	temp_file.close()
+	if temp_dir.dir_exists(GAMEFILES_LOC):
+		var temp_file = File.new()
+		temp_file.open(SAVE_LOC, File.WRITE)
+		#
+		temp_file.store_var(Vector2(res_width, res_height))
+		temp_file.store_var(screen_mode)
+		temp_file.store_var(display_vsync)
+		#
+		temp_file.close()
+	else:
+		temp_dir.open("res://")
+		temp_dir.make_dir("gamefiles")
+		save_all_settings()
 
 func load_all_settings():
 	var temp_file = File.new()
