@@ -111,8 +111,8 @@ func _on_ApplyChanges_pressed():
 #### SAVING AND LOADING ####
 onready var apply_timer = $ApplyTimer
 
-const SAVE_LOC = "res://settings.dat"
-const AUTOLOAD_LOC = "res://autoload"
+const SAVE_LOC = "res://gamefiles/settings.dat"
+const AUTOLOAD_LOC = "res://gamefiles/autoload"
 var display_res = Vector2()
 var load_autoload = false
 

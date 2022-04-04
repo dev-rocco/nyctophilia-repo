@@ -102,8 +102,8 @@ func upgrade(type):
 
 
 ## Saving and loading ##
-#const SAVEGAME_LOC = "res://savegame.dat"
-#const AUTOSAVEGAME_LOC = "res://savegame.dat"
+#const SAVEGAME_LOC = "res://gamefiles/savegame.dat"
+#const AUTOSAVEGAME_LOC = "res://gamefiles/savegame.dat"
 #var saved_vars = [cgold, stars, store_levels, store_bp, store_pm]
 
 func savegame(auto=false):
