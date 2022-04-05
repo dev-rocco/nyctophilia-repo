@@ -25,7 +25,7 @@ export(float) var starting_oxygen_regen_rate = starting_oxygen_depletion_rate / 
 var true_oxygen_regen_rate = starting_oxygen_regen_rate
 var true_oxygen_depletion_rate = starting_oxygen_depletion_rate
 var oxygen_remaining = 100
-onready var water_lighting = $WaterLighting
+onready var world_lighting = $WorldLighting
 # other
 var on_ground = false
 var can_jump = false
@@ -98,7 +98,7 @@ onready var enemy_try_timer = $EnemyTryTimer
 var in_water_starty = null
 var being_attacked = false
 func try_enemy():
-	if water_lighting_enabled:
+	if world_lighting_enabled:
 		fake_enemy.decide_attack()
 		enemy_try_timer.start(sanity/2)
 	else:
@@ -119,16 +119,16 @@ func dead():
 # warning-ignore:return_value_discarded
 	get_tree().reload_current_scene()
 
-var water_lighting_enabled = false
-var water_lighting_changespeed = 2.5
-onready var temp_light = water_lighting.get_node("Light")
-onready var temp_cm = water_lighting.get_node("CanvasModulate")
-func enable_water_lighting(delta):
-	temp_light.energy = lerp(temp_light.energy, 1, water_lighting_changespeed * delta)
-	temp_cm.color = lerp(temp_cm.color, Color(0,0,0,1), water_lighting_changespeed * delta)
-func disable_water_lighting(delta):
-	temp_light.energy = lerp(temp_light.energy, 0, water_lighting_changespeed * delta)
-	temp_cm.color = lerp(temp_cm.color, Color(1,1,1,1), water_lighting_changespeed * delta)
+var world_lighting_enabled = true
+var world_lighting_changespeed = 2.5
+onready var temp_light = world_lighting.get_node("Light")
+onready var temp_cm = world_lighting.get_node("CanvasModulate")
+func enable_world_lighting(delta):
+	temp_light.energy = lerp(temp_light.energy, 1, world_lighting_changespeed * delta)
+	temp_cm.color = lerp(temp_cm.color, Color(0,0,0,1), world_lighting_changespeed * delta)
+func disable_world_lighting(delta):
+	temp_light.energy = lerp(temp_light.energy, 0, world_lighting_changespeed * delta)
+	temp_cm.color = lerp(temp_cm.color, Color(1,1,1,1), world_lighting_changespeed * delta)
 ########################################
 
 # Main #
@@ -138,7 +138,7 @@ func _ready():
 	UI_control.visible = true
 	blackout_animator.get_parent().visible = true
 	blackout_animator.play("BlackFadeOut")
-	water_lighting.visible = true
+	world_lighting.visible = true
 	sprite_animator.play("idle")
 	jump_timer.start()
 	if fake_enemy_path:
@@ -178,10 +178,10 @@ func _process(delta):
 	#	dying()
 	
 	# Water lighting (darkness)
-	if water_lighting_enabled:
-		enable_water_lighting(delta)
+	if world_lighting_enabled:
+		enable_world_lighting(delta)
 	else:
-		disable_water_lighting(delta)
+		disable_world_lighting(delta)
 	
 	# Quick fixes
 	if oxygen_remaining < 0:
@@ -302,10 +302,10 @@ func _on_WaterChecker_area_shape_exited(_area_rid, _area, _area_shape_index, _lo
 
 # Darkness checker
 func _on_DarknessChecker_area_shape_entered(_area_rid, _area, _area_shape_index, _local_shape_index):
-	water_lighting_enabled = true
+	#world_lighting_enabled = true
 	in_water_starty = global_transform.origin.y
 func _on_DarknessChecker_area_shape_exited(_area_rid, _area, _area_shape_index, _local_shape_index):
-	water_lighting_enabled = false
+	#world_lighting_enabled = false
 	in_water_starty = null
 
 # Oxygen checker
