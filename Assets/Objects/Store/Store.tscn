@@ -1,4 +1,4 @@
-[gd_scene load_steps=15 format=2]
+[gd_scene load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Objects/Store/UpgradesContainer.gd" type="Script" id=1]
 [ext_resource path="res://Assets/Objects/Store/Store.gd" type="Script" id=2]
@@ -7,6 +7,7 @@
 [ext_resource path="res://Assets/Resources/Fonts/DynamicPresets/Montserrat.tres" type="DynamicFont" id=5]
 [ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Light.ttf" type="DynamicFontData" id=6]
 [ext_resource path="res://Assets/Resources/Fonts/DynamicPresets/MontserratBold.tres" type="DynamicFont" id=7]
+[ext_resource path="res://Assets/Resources/Themes/DevMainMenu.tres" type="Theme" id=8]
 
 [sub_resource type="QuadMesh" id=1]
 size = Vector2( 2, 2 )
@@ -20,13 +21,6 @@ font_data = ExtResource( 6 )
 
 [sub_resource type="Theme" id=4]
 default_font = SubResource( 9 )
-
-[sub_resource type="DynamicFont" id=7]
-size = 12
-font_data = ExtResource( 6 )
-
-[sub_resource type="Theme" id=8]
-default_font = SubResource( 7 )
 
 [sub_resource type="Theme" id=6]
 default_font = ExtResource( 5 )
@@ -71,7 +65,7 @@ margin_left = -20.0
 margin_top = -20.0
 margin_right = 20.0
 margin_bottom = 20.0
-theme = SubResource( 8 )
+theme = ExtResource( 8 )
 
 [node name="Panel" type="Panel" parent="CanvasLayer/Control"]
 anchor_left = 0.5

@@ -2,7 +2,7 @@
 
 [ext_resource path="res://Assets/Resources/Themes/DevMainMenu.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/DevMainMenu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Resources/Images/mmbg.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Resources/Images/newmmbg.png" type="Texture" id=3]
 [ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Bold.ttf" type="DynamicFontData" id=4]
 
 [sub_resource type="DynamicFont" id=4]
@@ -14,8 +14,8 @@ font_data = ExtResource( 4 )
 [node name="bg" type="CanvasLayer" parent="."]
 
 [node name="Sprite" type="Sprite" parent="bg"]
-position = Vector2( 562, 276 )
-scale = Vector2( 0.8, 0.8 )
+position = Vector2( 358, 354 )
+scale = Vector2( 0.662117, 0.662117 )
 z_index = 2
 texture = ExtResource( 3 )
 

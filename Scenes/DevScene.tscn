@@ -1,4 +1,4 @@
-[gd_scene load_steps=75 format=2]
+[gd_scene load_steps=47 format=2]
 
 [ext_resource path="res://Assets/Objects/Player/Player.tscn" type="PackedScene" id=1]
 [ext_resource path="res://Assets/Objects/Caves/DarknessTrigger.tscn" type="PackedScene" id=2]
@@ -18,15 +18,15 @@
 [ext_resource path="res://Assets/Resources/Images/rock.png" type="Texture" id=16]
 [ext_resource path="res://Assets/Resources/Images/rock_bg_crack.png" type="Texture" id=17]
 [ext_resource path="res://Assets/Resources/Images/LightMasks/LMcircle1.png" type="Texture" id=18]
+[ext_resource path="res://Assets/Resources/Shaders/visual/water.tres" type="Shader" id=19]
 
-[sub_resource type="RectangleShape2D" id=8]
-extents = Vector2( 298, 32 )
+[sub_resource type="Gradient" id=43]
 
-[sub_resource type="RectangleShape2D" id=1]
-extents = Vector2( 512, 32 )
+[sub_resource type="GradientTexture" id=44]
+gradient = SubResource( 43 )
 
-[sub_resource type="RectangleShape2D" id=2]
-extents = Vector2( 32, 300 )
+[sub_resource type="RectangleShape2D" id=42]
+extents = Vector2( 1, 1 )
 
 [sub_resource type="QuadMesh" id=5]
 
@@ -37,12 +37,11 @@ colors = PoolColorArray( 0.176471, 0.176471, 0.176471, 1 )
 [sub_resource type="GradientTexture" id=7]
 gradient = SubResource( 10 )
 
-[sub_resource type="Gradient" id=22]
-offsets = PoolRealArray( 0, 0.295082, 1 )
-colors = PoolColorArray( 0.360784, 0.654902, 0.615686, 1, 0.0156863, 0.113725, 0.101961, 1, 0.0156863, 0.113725, 0.101961, 1 )
-
-[sub_resource type="GradientTexture" id=21]
-gradient = SubResource( 22 )
+[sub_resource type="ShaderMaterial" id=41]
+shader = ExtResource( 19 )
+shader_param/XUV = 5.5
+shader_param/YUV = 2.5
+shader_param/foam_scalar = 0.05
 
 [sub_resource type="RectangleShape2D" id=9]
 extents = Vector2( 181, 285 )
@@ -51,7 +50,7 @@ extents = Vector2( 181, 285 )
 
 [sub_resource type="Gradient" id=26]
 offsets = PoolRealArray( 0 )
-colors = PoolColorArray( 0.290196, 0.290196, 0.290196, 1 )
+colors = PoolColorArray( 0, 0, 0, 1 )
 
 [sub_resource type="GradientTexture" id=27]
 gradient = SubResource( 26 )
@@ -75,248 +74,11 @@ default_font = SubResource( 31 )
 [sub_resource type="RectangleShape2D" id=18]
 extents = Vector2( 1, 1 )
 
-[sub_resource type="VisualShaderNodeVectorScalarMix" id=46]
-
-[sub_resource type="VisualShaderNodeColorConstant" id=47]
-constant = Color( 0.259892, 0.689453, 0.573673, 1 )
-
-[sub_resource type="VisualShaderNodeScalarOp" id=53]
-operator = 2
-
-[sub_resource type="VisualShaderNodeScalarOp" id=54]
-operator = 2
-
-[sub_resource type="VisualShaderNodeScalarUniform" id=55]
-uniform_name = "XUV"
-
-[sub_resource type="VisualShaderNodeScalarUniform" id=56]
-uniform_name = "YUV"
-
-[sub_resource type="VisualShaderNodeVectorFunc" id=57]
-function = 19
-
-[sub_resource type="VisualShaderNodeVectorOp" id=58]
-default_input_values = [ 0, Vector3( 1, 1, 1 ), 1, Vector3( 40, 40, 1 ) ]
-operator = 3
-
-[sub_resource type="VisualShaderNodeInput" id=41]
-input_name = "time"
-
-[sub_resource type="VisualShaderNodeVectorOp" id=59]
-default_input_values = [ 0, Vector3( 20, 20, 1 ), 1, Vector3( 0, 0, 0 ) ]
-operator = 2
-
-[sub_resource type="VisualShaderNodeScalarFunc" id=60]
-function = 15
-
-[sub_resource type="Gradient" id=63]
-offsets = PoolRealArray( 0.164179, 1 )
-
-[sub_resource type="GradientTexture" id=64]
-gradient = SubResource( 63 )
-
-[sub_resource type="VisualShaderNodeTexture" id=65]
-texture = SubResource( 64 )
-
-[sub_resource type="VisualShaderNodeVectorScalarMix" id=66]
-
-[sub_resource type="VisualShaderNodeVectorDecompose" id=67]
-
-[sub_resource type="VisualShaderNodeInput" id=68]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeScalarOp" id=69]
-default_input_values = [ 0, 0.003, 1, 0.0 ]
-operator = 3
-
-[sub_resource type="VisualShaderNodeVectorCompose" id=70]
-
-[sub_resource type="VisualShaderNodeScalarOp" id=71]
-default_input_values = [ 0, 2.0, 1, 16.0 ]
-operator = 3
-
-[sub_resource type="OpenSimplexNoise" id=43]
-
-[sub_resource type="NoiseTexture" id=44]
-seamless = true
-noise = SubResource( 43 )
-
-[sub_resource type="VisualShaderNodeTexture" id=45]
-texture = SubResource( 44 )
-
-[sub_resource type="VisualShaderNodeInput" id=48]
-input_name = "uv"
-
-[sub_resource type="VisualShaderNodeVectorDecompose" id=49]
-
-[sub_resource type="VisualShaderNodeVectorCompose" id=50]
-
-[sub_resource type="VisualShaderNodeScalarOp" id=51]
-
-[sub_resource type="VisualShader" id=39]
-code = "shader_type canvas_item;
-uniform float XUV;
-uniform float YUV;
-uniform sampler2D tex_frg_4;
-uniform sampler2D tex_frg_24;
-
-
-
-void vertex() {
-// Output:0
-
-}
-
-void fragment() {
-// Color:11
-	vec3 n_out11p0 = vec3(0.259892, 0.689453, 0.573673);
-	float n_out11p1 = 1.000000;
-
-// ScalarUniform:16
-	float n_out16p0 = XUV;
-
-// Input:5
-	vec3 n_out5p0 = vec3(UV, 0.0);
-
-// VectorDecompose:6
-	float n_out6p0 = n_out5p0.x;
-	float n_out6p1 = n_out5p0.y;
-	float n_out6p2 = n_out5p0.z;
-
-// ScalarOp:13
-	float n_out13p0 = n_out16p0 * n_out6p0;
-
-// Input:2
-	float n_out2p0 = TIME;
-
-// ScalarOp:33
-	float n_in33p1 = 16.00000;
-	float n_out33p0 = n_out2p0 / n_in33p1;
-
-// ScalarUniform:17
-	float n_out17p0 = YUV;
-
-// ScalarOp:15
-	float n_out15p0 = n_out17p0 * n_out6p1;
-
-// ScalarOp:8
-	float n_out8p0 = n_out33p0 + n_out15p0;
-
-// VectorCompose:7
-	vec3 n_out7p0 = vec3(n_out13p0, n_out8p0, n_out6p2);
-
-// VectorOp:20
-	vec3 n_in20p0 = vec3(20.00000, 20.00000, 1.00000);
-	vec3 n_out20p0 = n_in20p0 * n_out7p0;
-
-// VectorFunc:18
-	vec3 n_out18p0 = floor(n_out20p0);
-
-// VectorOp:19
-	vec3 n_in19p1 = vec3(40.00000, 40.00000, 1.00000);
-	vec3 n_out19p0 = n_out18p0 / n_in19p1;
-
-// Texture:4
-	vec4 tex_frg_4_read = texture(tex_frg_4, n_out19p0.xy);
-	vec3 n_out4p0 = tex_frg_4_read.rgb;
-	float n_out4p1 = tex_frg_4_read.a;
-
-// VectorScalarMix:10
-	float n_in10p2 = 0.50000;
-	vec3 n_out10p0 = mix(n_out11p0, n_out4p0, n_in10p2);
-
-// Input:30
-	vec3 n_out30p0 = vec3(UV, 0.0);
-
-// VectorDecompose:29
-	float n_out29p0 = n_out30p0.x;
-	float n_out29p1 = n_out30p0.y;
-	float n_out29p2 = n_out30p0.z;
-
-// ScalarOp:31
-	float n_in31p0 = 0.00300;
-	float n_out31p0 = n_in31p0 / n_out29p0;
-
-// VectorCompose:32
-	float n_in32p1 = 0.00000;
-	float n_in32p2 = 0.00000;
-	vec3 n_out32p0 = vec3(n_out31p0, n_in32p1, n_in32p2);
-
-// Texture:24
-	vec4 tex_frg_24_read = texture(tex_frg_24, n_out32p0.xy);
-	vec3 n_out24p0 = tex_frg_24_read.rgb;
-	float n_out24p1 = tex_frg_24_read.a;
-
-// VectorScalarMix:28
-	float n_in28p2 = 0.50000;
-	vec3 n_out28p0 = mix(n_out10p0, n_out24p0, n_in28p2);
-
-// Output:0
-	COLOR.rgb = n_out28p0;
-
-}
-
-void light() {
-// Output:0
-
-}
-"
-graph_offset = Vector2( -910.5, 46.25 )
-mode = 1
-flags/light_only = false
-nodes/fragment/0/position = Vector2( 1260, -100 )
-nodes/fragment/2/node = SubResource( 41 )
-nodes/fragment/2/position = Vector2( -1020, 180 )
-nodes/fragment/4/node = SubResource( 45 )
-nodes/fragment/4/position = Vector2( 60, 100 )
-nodes/fragment/5/node = SubResource( 48 )
-nodes/fragment/5/position = Vector2( -1220, -80 )
-nodes/fragment/6/node = SubResource( 49 )
-nodes/fragment/6/position = Vector2( -1000, -100 )
-nodes/fragment/7/node = SubResource( 50 )
-nodes/fragment/7/position = Vector2( -80, -40 )
-nodes/fragment/8/node = SubResource( 51 )
-nodes/fragment/8/position = Vector2( -140, 280 )
-nodes/fragment/10/node = SubResource( 46 )
-nodes/fragment/10/position = Vector2( 420, 100 )
-nodes/fragment/11/node = SubResource( 47 )
-nodes/fragment/11/position = Vector2( 280, -20 )
-nodes/fragment/13/node = SubResource( 53 )
-nodes/fragment/13/position = Vector2( -740, -220 )
-nodes/fragment/15/node = SubResource( 54 )
-nodes/fragment/15/position = Vector2( -740, -20 )
-nodes/fragment/16/node = SubResource( 55 )
-nodes/fragment/16/position = Vector2( -969.073, -186.632 )
-nodes/fragment/17/node = SubResource( 56 )
-nodes/fragment/17/position = Vector2( -980, 20 )
-nodes/fragment/18/node = SubResource( 57 )
-nodes/fragment/18/position = Vector2( -400, 100 )
-nodes/fragment/19/node = SubResource( 58 )
-nodes/fragment/19/position = Vector2( -140, 140 )
-nodes/fragment/20/node = SubResource( 59 )
-nodes/fragment/20/position = Vector2( -40, -200 )
-nodes/fragment/21/node = SubResource( 60 )
-nodes/fragment/21/position = Vector2( -520, 400 )
-nodes/fragment/24/node = SubResource( 65 )
-nodes/fragment/24/position = Vector2( 760, -340 )
-nodes/fragment/28/node = SubResource( 66 )
-nodes/fragment/28/position = Vector2( 1000, -160 )
-nodes/fragment/29/node = SubResource( 67 )
-nodes/fragment/29/position = Vector2( 312.24, -355.306 )
-nodes/fragment/30/node = SubResource( 68 )
-nodes/fragment/30/position = Vector2( 120, -380 )
-nodes/fragment/31/node = SubResource( 69 )
-nodes/fragment/31/position = Vector2( 520, -480 )
-nodes/fragment/32/node = SubResource( 70 )
-nodes/fragment/32/position = Vector2( 560, -280 )
-nodes/fragment/33/node = SubResource( 71 )
-nodes/fragment/33/position = Vector2( -620, 160 )
-nodes/fragment/connections = PoolIntArray( 5, 0, 6, 0, 8, 0, 7, 1, 11, 0, 10, 0, 6, 0, 13, 1, 6, 1, 15, 1, 16, 0, 13, 0, 17, 0, 15, 0, 13, 0, 7, 0, 15, 0, 8, 1, 6, 2, 7, 2, 4, 0, 10, 1, 19, 0, 4, 0, 7, 0, 20, 1, 20, 0, 18, 0, 18, 0, 19, 0, 24, 0, 28, 1, 10, 0, 28, 0, 28, 0, 0, 0, 30, 0, 29, 0, 29, 0, 31, 1, 31, 0, 32, 0, 32, 0, 24, 0, 33, 0, 8, 0, 2, 0, 33, 0 )
-
 [sub_resource type="ShaderMaterial" id=40]
-shader = SubResource( 39 )
+shader = ExtResource( 19 )
 shader_param/XUV = 80.0
 shader_param/YUV = 4.0
+shader_param/foam_scalar = 0.003
 
 [sub_resource type="QuadMesh" id=15]
 
@@ -357,53 +119,51 @@ fake_enemy_path = NodePath("../FakeEnemy")
 
 [node name="MainRoom" type="Node2D" parent="."]
 
-[node name="Floor" type="StaticBody2D" parent="MainRoom"]
+[node name="Light2D" type="Light2D" parent="MainRoom"]
+position = Vector2( 510, 500 )
+rotation = -1.57079
+scale = Vector2( 0.75, 1500 )
+texture = SubResource( 44 )
+energy = 2.0
+
+[node name="Walls" type="Node2D" parent="MainRoom"]
+
+[node name="Wall1" type="StaticBody2D" parent="MainRoom/Walls"]
+position = Vector2( -10, 300 )
+scale = Vector2( 10, 300 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Floor"]
-position = Vector2( 298, 632 )
-shape = SubResource( 8 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Walls/Wall1"]
+shape = SubResource( 42 )
 
-[node name="Ceiling" type="StaticBody2D" parent="MainRoom"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MainRoom/Walls/Wall1"]
+occluder = ExtResource( 8 )
+
+[node name="Wall2" type="StaticBody2D" parent="MainRoom/Walls"]
+position = Vector2( 1034, 300 )
+scale = Vector2( 10, 300 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Ceiling"]
-position = Vector2( 512, -32 )
-shape = SubResource( 1 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Walls/Wall2"]
+shape = SubResource( 42 )
 
-[node name="Wall" type="StaticBody2D" parent="MainRoom"]
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MainRoom/Walls/Wall2"]
+occluder = ExtResource( 8 )
+
+[node name="Wall3" type="StaticBody2D" parent="MainRoom/Walls"]
+position = Vector2( 330, 610 )
+rotation = -1.57079
+scale = Vector2( 10, 330 )
 collision_layer = 3
 collision_mask = 3
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall"]
-position = Vector2( -32, 300 )
-shape = SubResource( 2 )
+[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Walls/Wall3"]
+shape = SubResource( 42 )
 
-[node name="Wall2" type="StaticBody2D" parent="MainRoom"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall2"]
-position = Vector2( 1056, 300 )
-shape = SubResource( 2 )
-
-[node name="Wall3" type="StaticBody2D" parent="MainRoom"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall3"]
-position = Vector2( 1056, 900 )
-shape = SubResource( 2 )
-
-[node name="Wall4" type="StaticBody2D" parent="MainRoom"]
-collision_layer = 3
-collision_mask = 3
-
-[node name="CollisionShape2D" type="CollisionShape2D" parent="MainRoom/Wall4"]
-position = Vector2( 628, 900 )
-shape = SubResource( 2 )
+[node name="LightOccluder2D" type="LightOccluder2D" parent="MainRoom/Walls/Wall3"]
+occluder = ExtResource( 8 )
 
 [node name="Backgrounds" type="Node2D" parent="MainRoom"]
 
@@ -422,12 +182,12 @@ mesh = SubResource( 5 )
 texture = SubResource( 7 )
 
 [node name="BgWater" type="MeshInstance2D" parent="MainRoom/Backgrounds"]
+material = SubResource( 41 )
 position = Vector2( 842, 915 )
 rotation = 1.5708
 scale = Vector2( 570, 365 )
 z_index = -1
 mesh = SubResource( 5 )
-texture = SubResource( 21 )
 
 [node name="Water" type="Area2D" parent="MainRoom"]
 position = Vector2( 660, 640 )

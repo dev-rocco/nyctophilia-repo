@@ -609,8 +609,9 @@ text = "Desktop"
 visible = false
 
 [node name="Light" type="Light2D" parent="WorldLighting"]
+visible = false
 texture = ExtResource( 7 )
-texture_scale = 0.75
+texture_scale = 0.3
 shadow_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="WorldLighting"]
