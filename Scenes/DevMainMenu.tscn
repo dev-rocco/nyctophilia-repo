@@ -162,25 +162,25 @@ margin_bottom = 64.0
 alignment = 1
 
 [node name="Windowed" type="Button" parent="Menu/Menu/Options/Display/Modes/Buttons"]
-margin_right = 81.0
-margin_bottom = 20.0
+margin_right = 89.0
+margin_bottom = 21.0
 text = "Windowed"
 
 [node name="Fullscreen" type="Button" parent="Menu/Menu/Options/Display/Modes/Buttons"]
-margin_top = 24.0
-margin_right = 81.0
-margin_bottom = 44.0
+margin_top = 25.0
+margin_right = 89.0
+margin_bottom = 46.0
 text = "Fullscreen"
 
 [node name="Borderless" type="Button" parent="Menu/Menu/Options/Display/Modes/Buttons"]
-margin_top = 48.0
-margin_right = 81.0
-margin_bottom = 68.0
+margin_top = 50.0
+margin_right = 89.0
+margin_bottom = 71.0
 text = "Borderless"
 
 [node name="VSync" type="CheckBox" parent="Menu/Menu/Options/Display/Modes/Buttons"]
-margin_top = 72.0
-margin_right = 81.0
+margin_top = 75.0
+margin_right = 89.0
 margin_bottom = 96.0
 text = "V-Sync"
 
@@ -195,33 +195,33 @@ margin_right = 69.5
 margin_bottom = -3.0
 
 [node name="HBoxContainer" type="HBoxContainer" parent="Menu/Menu/Options/VBoxContainer"]
-margin_right = 139.0
-margin_bottom = 20.0
+margin_right = 145.0
+margin_bottom = 21.0
 
 [node name="ApplyChanges" type="Button" parent="Menu/Menu/Options/VBoxContainer/HBoxContainer"]
-margin_right = 48.0
-margin_bottom = 20.0
+margin_right = 45.0
+margin_bottom = 21.0
 size_flags_horizontal = 3
 text = "Apply"
 
 [node name="SaveChanges" type="Button" parent="Menu/Menu/Options/VBoxContainer/HBoxContainer"]
-margin_left = 52.0
-margin_right = 93.0
-margin_bottom = 20.0
+margin_left = 49.0
+margin_right = 95.0
+margin_bottom = 21.0
 size_flags_horizontal = 3
 text = "Save"
 
 [node name="LoadChanges" type="Button" parent="Menu/Menu/Options/VBoxContainer/HBoxContainer"]
-margin_left = 97.0
-margin_right = 139.0
-margin_bottom = 20.0
+margin_left = 99.0
+margin_right = 145.0
+margin_bottom = 21.0
 size_flags_horizontal = 3
 text = "Load"
 
 [node name="Autoload" type="CheckBox" parent="Menu/Menu/Options/VBoxContainer"]
-margin_top = 24.0
-margin_right = 139.0
-margin_bottom = 48.0
+margin_top = 25.0
+margin_right = 145.0
+margin_bottom = 46.0
 text = "Load on startup"
 
 [node name="ApplyTimer" type="Timer" parent="Menu/Menu"]

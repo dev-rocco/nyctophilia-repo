@@ -102,41 +102,37 @@ func upgrade(type):
 
 
 ## Saving and loading ##
-#const SAVEGAME_LOC = "res://gamefiles/savegame.dat"
-#const AUTOSAVEGAME_LOC = "res://gamefiles/savegame.dat"
-#var saved_vars = [cgold, stars, store_levels, store_bp, store_pm]
+const SAVEGAME_LOC = "res://gamefiles/savegame.dat"
+const AUTOSAVEGAME_LOC = "res://gamefiles/savegame.dat"
+var saved_vars = [cgold, stars, store_levels, store_bp, store_pm]
 
 func savegame(auto=false):
-	#var temp_f = File.new()
-	#if auto:
-	#	print(str(self)+": autosaving...   FILE:\""+AUTOSAVEGAME_LOC+"\"")
-	#	temp_f.open(AUTOSAVEGAME_LOC, File.WRITE)
-	#	for i in saved_vars:
-	#		temp_f.store_var(i)
-	#else:
-	#	temp_f.open(SAVEGAME_LOC, File.WRITE)
-	#	for i in saved_vars:
-	#		temp_f.store_var(i)
-	#temp_f.close()
-	if !auto:
-		OS.alert("Saving and loading not yet implemented.", "Sorry!")
+	var temp_f = File.new()
+	if auto:
+		print(str(self)+": autosaving...   FILE:\""+AUTOSAVEGAME_LOC+"\"")
+		temp_f.open(AUTOSAVEGAME_LOC, File.WRITE)
+		for i in saved_vars:
+			temp_f.store_var(i)
+	else:
+		temp_f.open(SAVEGAME_LOC, File.WRITE)
+		for i in saved_vars:
+			temp_f.store_var(i)
+	temp_f.close()
 
 func loadgame(auto=false):
-	#var temp_d = Directory.new()
-	#var temp_f = File.new()
-	#if !auto and temp_d.file_exists(SAVEGAME_LOC):
-	#	print(str(self)+": loading savegame at: "+SAVEGAME_LOC)
-	#	temp_f.open(SAVEGAME_LOC, File.READ)
-	#	for i in saved_vars:
-	#		i = temp_f.get_var()
-	#elif auto and temp_d.file_exists(AUTOSAVEGAME_LOC):
-	#	print(str(self)+": loading autosavegame at: "+AUTOSAVEGAME_LOC)
-	#	temp_f.open(AUTOSAVEGAME_LOC, File.READ)
-	#	for i in saved_vars:
-	#		i = temp_f.get_var()
-	#else:
-	#	print(str(self)+": no savegame found")
-	#	temp_f.open(AUTOSAVEGAME_LOC, File.WRITE)
-	#temp_f.close()
-	if !auto:
-		OS.alert("Saving and loading not yet implemented.", "Sorry!")
+	var temp_d = Directory.new()
+	var temp_f = File.new()
+	if !auto and temp_d.file_exists(SAVEGAME_LOC):
+		print(str(self)+": loading savegame at: "+SAVEGAME_LOC)
+		temp_f.open(SAVEGAME_LOC, File.READ)
+		for i in saved_vars:
+			i = temp_f.get_var()
+	elif auto and temp_d.file_exists(AUTOSAVEGAME_LOC):
+		print(str(self)+": loading autosavegame at: "+AUTOSAVEGAME_LOC)
+		temp_f.open(AUTOSAVEGAME_LOC, File.READ)
+		for i in saved_vars:
+			i = temp_f.get_var()
+	else:
+		print(str(self)+": no savegame found")
+		temp_f.open(AUTOSAVEGAME_LOC, File.WRITE)
+	temp_f.close()
