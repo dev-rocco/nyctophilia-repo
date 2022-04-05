@@ -556,7 +556,6 @@ margin_right = 138.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-disabled = true
 text = "Save"
 
 [node name="Load" type="Button" parent="Camera/PMenu/PauseMenu/Panel/Buttons/HBoxContainer"]
@@ -565,7 +564,6 @@ margin_right = 280.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-disabled = true
 text = "Load"
 
 [node name="Label" type="Label" parent="Camera/PMenu/PauseMenu/Panel/Buttons"]
