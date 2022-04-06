@@ -140,6 +140,7 @@ var fake_enemy
 func _ready():
 	UI_control.visible = true
 	flashlight.visible = true
+	world_lighting_enabled = false
 	blackout_animator.get_parent().visible = true
 	blackout_animator.play("BlackFadeOut")
 	world_lighting.visible = true

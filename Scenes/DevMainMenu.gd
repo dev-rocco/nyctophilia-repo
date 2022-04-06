@@ -1,7 +1,7 @@
 extends Control
 
 export var start_scene = "res://Scenes/DevScene.tscn"
-onready var options_panel = $Options
+onready var options_panel = $OptionsControl
 
 ### GENERAL ###
 func _on_Start_pressed():
@@ -9,7 +9,7 @@ func _on_Start_pressed():
 		print("starting "+start_scene)
 		var _DISC_cs = get_tree().change_scene(start_scene)
 
-var options_alert_displayed = false
+var options_alert_displayed = true
 func _on_Options_pressed():
 	if accept_inputs:
 		if !options_alert_displayed:
@@ -23,9 +23,9 @@ func _on_Options_pressed():
 
 ### OPTIONS ###
 # Display #
-onready var res_width_box = $Options/Display/Dimensions/WidthLabel/Width
-onready var res_height_box = $Options/Display/Dimensions/HeightLabel/Height
-onready var display_vsync_button = $Options/Display/Modes/Buttons/VSync
+onready var res_width_box = $OptionsControl/TabCon/Display/Display/Dimensions/Width/Width
+onready var res_height_box = $OptionsControl/TabCon/Display/Display/Dimensions/Height/Height
+onready var display_vsync_button = $OptionsControl/TabCon/Display/Display/Modes/Buttons/VSync
 ## applied vars
 var res_width = 854
 var res_height = 480
@@ -119,9 +119,10 @@ var load_autoload = false
 var temp_dir = Directory.new()
 
 func _ready():
+	options_panel.visible = false
 	if temp_dir.file_exists(AUTOLOAD_LOC) and temp_dir.file_exists(SAVE_LOC):
 		print("autoloaded settings")
-		$Options/VBoxContainer/Autoload.pressed = true
+		$OptionsControl/Apply/Autoload.pressed = true
 		load_all_settings()
 
 func save_all_settings():
@@ -172,7 +173,6 @@ func _on_Autoload_toggled(button_pressed):
 		temp_file.store_string("0")
 		temp_file.close()
 	else:
-		var temp_dir = Directory.new()
 		temp_dir.remove(AUTOLOAD_LOC)
 ##################################
 
