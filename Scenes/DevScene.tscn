@@ -95,16 +95,16 @@ colors = PoolColorArray( 0, 0, 0, 1 )
 [sub_resource type="GradientTexture" id=36]
 gradient = SubResource( 35 )
 
-[sub_resource type="Gradient" id=37]
+[sub_resource type="Gradient" id=46]
 colors = PoolColorArray( 0.458824, 0.72549, 0.819608, 1, 0.991128, 0.9955, 0.997043, 1 )
 
 [sub_resource type="GradientTexture" id=25]
-gradient = SubResource( 37 )
+gradient = SubResource( 46 )
 
-[sub_resource type="Gradient" id=33]
+[sub_resource type="Gradient" id=45]
 
 [sub_resource type="GradientTexture" id=34]
-gradient = SubResource( 33 )
+gradient = SubResource( 45 )
 
 [node name="DevScene" type="Node2D"]
 script = ExtResource( 3 )
@@ -350,7 +350,6 @@ texture = SubResource( 25 )
 
 [node name="Light2D" type="Light2D" parent="Underwater1/Sky3"]
 light_mask = 2
-z_index = -10
 texture = ExtResource( 18 )
 range_item_cull_mask = 2
 

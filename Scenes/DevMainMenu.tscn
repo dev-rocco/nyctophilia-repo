@@ -1,9 +1,41 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=19 format=2]
 
 [ext_resource path="res://Assets/Resources/Themes/DevMainMenu.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/DevMainMenu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Resources/Images/newmmbg.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Resources/Shaders/visual/water.tres" type="Shader" id=3]
 [ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Resources/Images/rock_bg_crack.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Resources/Images/rock.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Resources/Images/LightMasks/LMcircle1.png" type="Texture" id=7]
+
+[sub_resource type="QuadMesh" id=7]
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 1, 1, 1, 1, 0.54902, 0.772549, 0.905882, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=38]
+
+[sub_resource type="Gradient" id=37]
+colors = PoolColorArray( 0.458824, 0.72549, 0.819608, 1, 0.991128, 0.9955, 0.997043, 1 )
+
+[sub_resource type="GradientTexture" id=39]
+gradient = SubResource( 37 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 3 )
+shader_param/XUV = 8.0
+shader_param/YUV = 8.0
+shader_param/foam_scalar = 0.04
+
+[sub_resource type="QuadMesh" id=6]
+
+[sub_resource type="Gradient" id=33]
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
@@ -13,16 +45,100 @@ font_data = ExtResource( 4 )
 
 [node name="bg" type="CanvasLayer" parent="."]
 
-[node name="Sprite" type="Sprite" parent="bg"]
-position = Vector2( 358, 354 )
-scale = Vector2( 0.662117, 0.662117 )
-z_index = 2
-texture = ExtResource( 3 )
-
 [node name="ColorRect" type="ColorRect" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="bg_img" type="Sprite" parent="bg"]
+light_mask = 3
+position = Vector2( 577, 252 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 5 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="bg/bg_img"]
+show_behind_parent = true
+light_mask = 2
+position = Vector2( 35, -32 )
+rotation = 1.5708
+scale = Vector2( 60, 60 )
+mesh = SubResource( 7 )
+texture = SubResource( 9 )
+
+[node name="Sky3" type="MeshInstance2D" parent="bg/bg_img/MeshInstance2D"]
+visible = false
+light_mask = 2
+position = Vector2( -54, -263 )
+rotation = -1.57079
+scale = Vector2( 400, 400 )
+z_index = 5
+mesh = SubResource( 38 )
+texture = SubResource( 39 )
+
+[node name="Light2D" type="Light2D" parent="bg/bg_img/MeshInstance2D"]
+light_mask = 2
+position = Vector2( -54, -263 )
+rotation = -1.57079
+scale = Vector2( 400, 400 )
+texture = ExtResource( 7 )
+range_item_cull_mask = 2
+
+[node name="Rocks" type="Node2D" parent="bg"]
+
+[node name="Rock1" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 333, 331 )
+rotation = -0.261799
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock2" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 432, 341 )
+rotation = 0.521536
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock3" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 537, 333 )
+rotation = -0.618703
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock4" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 642, 328 )
+rotation = 1.22612
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock5" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 722, 355 )
+rotation = -1.15897
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock6" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 816, 324 )
+rotation = 0.760148
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="WaterShader" type="MeshInstance2D" parent="bg"]
+material = SubResource( 5 )
+position = Vector2( 573, 629 )
+rotation = 1.5708
+scale = Vector2( 583.129, 583.129 )
+mesh = SubResource( 6 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="bg"]
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Light2D" type="Light2D" parent="bg"]
+position = Vector2( 466, 319 )
+rotation = -0.641128
+scale = Vector2( 0.298796, 208.295 )
+texture = SubResource( 34 )
+range_layer_min = 1
+range_layer_max = 1
+shadow_item_cull_mask = 3
 
 [node name="Menu" type="CanvasLayer" parent="."]
 layer = 2
