@@ -137,9 +137,9 @@ mesh = SubResource( 6 )
 color = Color( 0.247059, 0.247059, 0.247059, 1 )
 
 [node name="Light2D" type="Light2D" parent="bg"]
-position = Vector2( 466, 319 )
-rotation = -0.641128
-scale = Vector2( 0.298796, 208.295 )
+position = Vector2( 458.995, 317.614 )
+rotation = -0.627279
+scale = Vector2( 0.298796, 219.571 )
 texture = SubResource( 34 )
 range_layer_min = 1
 range_layer_max = 1
@@ -343,7 +343,8 @@ scrolling_enabled = false
 [node name="ScrollContainer" type="ScrollContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls"]
 anchor_right = 1.0
 anchor_bottom = 1.0
-margin_bottom = -94.0
+margin_top = 8.0
+margin_bottom = -86.0
 scroll_horizontal_enabled = false
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer"]
