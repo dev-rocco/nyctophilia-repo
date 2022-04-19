@@ -1,28 +1,149 @@
-[gd_scene load_steps=6 format=2]
+[gd_scene load_steps=21 format=2]
 
 [ext_resource path="res://Assets/Resources/Themes/DevMainMenu.tres" type="Theme" id=1]
 [ext_resource path="res://Scenes/DevMainMenu.gd" type="Script" id=2]
-[ext_resource path="res://Assets/Resources/Images/mmbg.png" type="Texture" id=3]
+[ext_resource path="res://Assets/Resources/Shaders/visual/water.tres" type="Shader" id=3]
 [ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Bold.ttf" type="DynamicFontData" id=4]
+[ext_resource path="res://Assets/Resources/Images/rock_bg_crack.png" type="Texture" id=5]
+[ext_resource path="res://Assets/Resources/Images/rock.png" type="Texture" id=6]
+[ext_resource path="res://Assets/Resources/Images/LightMasks/LMcircle1.png" type="Texture" id=7]
+[ext_resource path="res://Assets/Resources/Fonts/Montserrat/Montserrat-Light.ttf" type="DynamicFontData" id=8]
+
+[sub_resource type="QuadMesh" id=7]
+
+[sub_resource type="Gradient" id=8]
+colors = PoolColorArray( 1, 1, 1, 1, 0.54902, 0.772549, 0.905882, 1 )
+
+[sub_resource type="GradientTexture" id=9]
+gradient = SubResource( 8 )
+
+[sub_resource type="QuadMesh" id=38]
+
+[sub_resource type="Gradient" id=37]
+colors = PoolColorArray( 0.458824, 0.72549, 0.819608, 1, 0.991128, 0.9955, 0.997043, 1 )
+
+[sub_resource type="GradientTexture" id=39]
+gradient = SubResource( 37 )
+
+[sub_resource type="ShaderMaterial" id=5]
+shader = ExtResource( 3 )
+shader_param/XUV = 8.0
+shader_param/YUV = 8.0
+shader_param/foam_scalar = 0.04
+
+[sub_resource type="QuadMesh" id=6]
+
+[sub_resource type="Gradient" id=33]
+
+[sub_resource type="GradientTexture" id=34]
+gradient = SubResource( 33 )
 
 [sub_resource type="DynamicFont" id=4]
 size = 32
 font_data = ExtResource( 4 )
 
+[sub_resource type="DynamicFont" id=40]
+size = 11
+font_data = ExtResource( 8 )
+
 [node name="MainMenu" type="Node2D"]
 
 [node name="bg" type="CanvasLayer" parent="."]
-
-[node name="Sprite" type="Sprite" parent="bg"]
-position = Vector2( 562, 276 )
-scale = Vector2( 0.8, 0.8 )
-z_index = 2
-texture = ExtResource( 3 )
 
 [node name="ColorRect" type="ColorRect" parent="bg"]
 anchor_right = 1.0
 anchor_bottom = 1.0
 color = Color( 0, 0, 0, 1 )
+
+[node name="bg_img" type="Sprite" parent="bg"]
+light_mask = 3
+position = Vector2( 577, 252 )
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 5 )
+
+[node name="MeshInstance2D" type="MeshInstance2D" parent="bg/bg_img"]
+show_behind_parent = true
+light_mask = 2
+position = Vector2( 35, -32 )
+rotation = 1.5708
+scale = Vector2( 60, 60 )
+mesh = SubResource( 7 )
+texture = SubResource( 9 )
+
+[node name="Sky3" type="MeshInstance2D" parent="bg/bg_img/MeshInstance2D"]
+visible = false
+light_mask = 2
+position = Vector2( -54, -263 )
+rotation = -1.57079
+scale = Vector2( 400, 400 )
+z_index = 5
+mesh = SubResource( 38 )
+texture = SubResource( 39 )
+
+[node name="Light2D" type="Light2D" parent="bg/bg_img/MeshInstance2D"]
+light_mask = 2
+position = Vector2( -54, -263 )
+rotation = -1.57079
+scale = Vector2( 400, 400 )
+texture = ExtResource( 7 )
+range_item_cull_mask = 2
+
+[node name="Rocks" type="Node2D" parent="bg"]
+
+[node name="Rock1" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 333, 331 )
+rotation = -0.261799
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock2" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 432, 341 )
+rotation = 0.521536
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock3" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 537, 333 )
+rotation = -0.618703
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock4" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 642, 328 )
+rotation = 1.22612
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock5" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 722, 355 )
+rotation = -1.15897
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="Rock6" type="Sprite" parent="bg/Rocks"]
+position = Vector2( 816, 324 )
+rotation = 0.760148
+scale = Vector2( 3.5, 3.5 )
+texture = ExtResource( 6 )
+
+[node name="WaterShader" type="MeshInstance2D" parent="bg"]
+material = SubResource( 5 )
+position = Vector2( 573, 629 )
+rotation = 1.5708
+scale = Vector2( 583.129, 583.129 )
+mesh = SubResource( 6 )
+
+[node name="CanvasModulate" type="CanvasModulate" parent="bg"]
+color = Color( 0.247059, 0.247059, 0.247059, 1 )
+
+[node name="Light2D" type="Light2D" parent="bg"]
+position = Vector2( 458.995, 317.614 )
+rotation = -0.627279
+scale = Vector2( 0.298796, 219.571 )
+texture = SubResource( 34 )
+range_layer_min = 1
+range_layer_max = 1
+shadow_item_cull_mask = 3
 
 [node name="Menu" type="CanvasLayer" parent="."]
 layer = 2
@@ -89,136 +210,709 @@ text = "Nyctophilia"
 align = 1
 valign = 1
 
-[node name="Options" type="Panel" parent="Menu/Menu"]
-visible = false
+[node name="OptionsControl" type="Control" parent="Menu/Menu"]
 margin_left = 375.0
 margin_top = 50.0
-margin_right = 756.0
-margin_bottom = 419.0
+margin_right = 375.0
+margin_bottom = 50.0
 
-[node name="Label" type="Label" parent="Menu/Menu/Options"]
-margin_left = 5.0
-margin_top = 5.0
-margin_right = 56.0
-margin_bottom = 19.0
-text = "Options"
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl"]
+margin_left = 265.0
+margin_top = -44.0
+margin_right = 474.0
+margin_bottom = 1.0
+custom_colors/font_color = Color( 0.890196, 0.215686, 0.215686, 1 )
+custom_fonts/font = SubResource( 40 )
+text = "WARNING: Options menu found to be unstable on Linux devices."
+align = 2
+autowrap = true
 
-[node name="Display" type="Control" parent="Menu/Menu/Options"]
-margin_top = 61.0
+[node name="TabCon" type="TabContainer" parent="Menu/Menu/OptionsControl"]
+margin_right = 400.0
+margin_bottom = 375.0
+tab_align = 0
+
+[node name="Display" type="Tabs" parent="Menu/Menu/OptionsControl/TabCon"]
+visible = false
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 21.0
+tab_align = 0
+scrolling_enabled = false
+
+[node name="Display" type="Control" parent="Menu/Menu/OptionsControl/TabCon/Display"]
 margin_right = 40.0
-margin_bottom = 101.0
+margin_bottom = 40.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="Label" type="Label" parent="Menu/Menu/Options/Display"]
-margin_left = 5.0
-margin_right = 73.0
-margin_bottom = 14.0
-text = "Display"
+[node name="Dimensions" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Display/Display"]
+margin_top = 5.0
+margin_right = 147.0
+margin_bottom = 51.0
 
-[node name="Dimensions" type="Control" parent="Menu/Menu/Options/Display"]
-margin_left = 10.0
-margin_top = 20.0
-margin_right = 50.0
-margin_bottom = 60.0
+[node name="Width" type="VBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions"]
+margin_right = 71.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 
-[node name="WidthLabel" type="Label" parent="Menu/Menu/Options/Display/Dimensions"]
-margin_right = 68.0
-margin_bottom = 14.0
+[node name="WidthLabel" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions/Width"]
+margin_right = 71.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 text = "Width"
 
-[node name="Width" type="TextEdit" parent="Menu/Menu/Options/Display/Dimensions/WidthLabel"]
-margin_top = 15.0
-margin_right = 50.0
-margin_bottom = 35.0
+[node name="Width" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions/Width"]
+margin_top = 25.0
+margin_right = 71.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "854"
 
-[node name="HeightLabel" type="Label" parent="Menu/Menu/Options/Display/Dimensions"]
-margin_left = 60.0
-margin_right = 128.0
-margin_bottom = 14.0
+[node name="Height" type="VBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions"]
+margin_left = 75.0
+margin_right = 147.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
+
+[node name="HeightLabel" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions/Height"]
+margin_right = 72.0
+margin_bottom = 21.0
+size_flags_horizontal = 3
+size_flags_vertical = 2
 text = "Height"
 
-[node name="Height" type="TextEdit" parent="Menu/Menu/Options/Display/Dimensions/HeightLabel"]
-margin_top = 15.0
-margin_right = 50.0
-margin_bottom = 35.0
+[node name="Height" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions/Height"]
+margin_top = 25.0
+margin_right = 72.0
+margin_bottom = 46.0
+size_flags_horizontal = 3
+size_flags_vertical = 3
 text = "480"
 
-[node name="Modes" type="Control" parent="Menu/Menu/Options/Display"]
+[node name="Modes" type="Control" parent="Menu/Menu/OptionsControl/TabCon/Display/Display"]
 margin_top = 75.0
 margin_right = 40.0
 margin_bottom = 115.0
 
-[node name="Label" type="Label" parent="Menu/Menu/Options/Display/Modes"]
-margin_left = 5.0
-margin_right = 45.0
-margin_bottom = 14.0
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes"]
+margin_right = 54.0
+margin_bottom = 21.0
 text = "Modes"
 
-[node name="Buttons" type="VBoxContainer" parent="Menu/Menu/Options/Display/Modes"]
-margin_left = 10.0
-margin_top = 20.0
-margin_right = 91.0
-margin_bottom = 64.0
+[node name="Buttons" type="VBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes"]
+margin_top = 30.0
+margin_right = 89.0
+margin_bottom = 126.0
 alignment = 1
 
-[node name="Windowed" type="Button" parent="Menu/Menu/Options/Display/Modes/Buttons"]
+[node name="Windowed" type="Button" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons"]
 margin_right = 89.0
 margin_bottom = 21.0
 text = "Windowed"
 
-[node name="Fullscreen" type="Button" parent="Menu/Menu/Options/Display/Modes/Buttons"]
+[node name="Fullscreen" type="Button" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons"]
 margin_top = 25.0
 margin_right = 89.0
 margin_bottom = 46.0
 text = "Fullscreen"
 
-[node name="Borderless" type="Button" parent="Menu/Menu/Options/Display/Modes/Buttons"]
+[node name="Borderless" type="Button" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons"]
 margin_top = 50.0
 margin_right = 89.0
 margin_bottom = 71.0
 text = "Borderless"
 
-[node name="VSync" type="CheckBox" parent="Menu/Menu/Options/Display/Modes/Buttons"]
+[node name="VSync" type="CheckBox" parent="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons"]
 margin_top = 75.0
 margin_right = 89.0
 margin_bottom = 96.0
 text = "V-Sync"
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Menu/Options"]
+[node name="Controls" type="Tabs" parent="Menu/Menu/OptionsControl/TabCon"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 21.0
+tab_align = 0
+scrolling_enabled = false
+
+[node name="ScrollContainer" type="ScrollContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls"]
+anchor_right = 1.0
+anchor_bottom = 1.0
+margin_top = 8.0
+margin_bottom = -86.0
+scroll_horizontal_enabled = false
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer"]
+margin_right = 242.0
+margin_bottom = 546.0
+
+[node name="Keybind" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_right = 242.0
+margin_bottom = 21.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind2" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 25.0
+margin_right = 242.0
+margin_bottom = 46.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind2"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind2"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind2"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind3" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 50.0
+margin_right = 242.0
+margin_bottom = 71.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind3"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind3"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind3"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind4" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 75.0
+margin_right = 242.0
+margin_bottom = 96.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind4"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind4"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind4"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind5" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 100.0
+margin_right = 242.0
+margin_bottom = 121.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind5"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind5"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind5"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind6" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 125.0
+margin_right = 242.0
+margin_bottom = 146.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind6"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind6"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind6"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind7" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 150.0
+margin_right = 242.0
+margin_bottom = 171.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind7"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind7"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind7"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind8" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 175.0
+margin_right = 242.0
+margin_bottom = 196.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind8"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind8"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind8"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind9" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 200.0
+margin_right = 242.0
+margin_bottom = 221.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind9"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind9"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind9"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind10" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 225.0
+margin_right = 242.0
+margin_bottom = 246.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind10"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind10"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind10"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind11" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 250.0
+margin_right = 242.0
+margin_bottom = 271.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind11"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind11"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind11"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind12" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 275.0
+margin_right = 242.0
+margin_bottom = 296.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind12"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind12"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind12"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind13" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 300.0
+margin_right = 242.0
+margin_bottom = 321.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind13"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind13"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind13"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind14" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 325.0
+margin_right = 242.0
+margin_bottom = 346.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind14"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind14"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind14"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind15" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 350.0
+margin_right = 242.0
+margin_bottom = 371.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind15"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind15"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind15"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind16" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 375.0
+margin_right = 242.0
+margin_bottom = 396.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind16"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind16"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind16"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind17" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 400.0
+margin_right = 242.0
+margin_bottom = 421.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind17"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind17"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind17"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind18" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 425.0
+margin_right = 242.0
+margin_bottom = 446.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind18"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind18"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind18"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind19" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 450.0
+margin_right = 242.0
+margin_bottom = 471.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind19"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind19"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind19"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind20" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 475.0
+margin_right = 242.0
+margin_bottom = 496.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind20"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind20"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind20"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind21" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 500.0
+margin_right = 242.0
+margin_bottom = 521.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind21"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind21"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind21"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Keybind22" type="HBoxContainer" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer"]
+margin_top = 525.0
+margin_right = 242.0
+margin_bottom = 546.0
+
+[node name="Label" type="Label" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind22"]
+margin_right = 138.0
+margin_bottom = 21.0
+text = "Example keybind"
+
+[node name="Bind1" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind22"]
+margin_left = 142.0
+margin_right = 190.0
+margin_bottom = 21.0
+text = "Key1"
+align = 1
+
+[node name="Bind2" type="LineEdit" parent="Menu/Menu/OptionsControl/TabCon/Controls/ScrollContainer/VBoxContainer/Keybind22"]
+margin_left = 194.0
+margin_right = 242.0
+margin_bottom = 21.0
+text = "Key2"
+align = 1
+
+[node name="Apply" type="VBoxContainer" parent="Menu/Menu/OptionsControl"]
 anchor_left = 0.5
 anchor_top = 1.0
 anchor_right = 0.5
 anchor_bottom = 1.0
-margin_left = -69.5
-margin_top = -51.0
-margin_right = 69.5
-margin_bottom = -3.0
+margin_left = 130.0
+margin_top = 300.0
+margin_right = 275.0
+margin_bottom = 346.0
 
-[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Menu/Options/VBoxContainer"]
+[node name="HBoxContainer" type="HBoxContainer" parent="Menu/Menu/OptionsControl/Apply"]
 margin_right = 145.0
 margin_bottom = 21.0
 
-[node name="ApplyChanges" type="Button" parent="Menu/Menu/Options/VBoxContainer/HBoxContainer"]
+[node name="ApplyChanges" type="Button" parent="Menu/Menu/OptionsControl/Apply/HBoxContainer"]
 margin_right = 45.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 text = "Apply"
 
-[node name="SaveChanges" type="Button" parent="Menu/Menu/Options/VBoxContainer/HBoxContainer"]
+[node name="SaveChanges" type="Button" parent="Menu/Menu/OptionsControl/Apply/HBoxContainer"]
 margin_left = 49.0
 margin_right = 95.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 text = "Save"
 
-[node name="LoadChanges" type="Button" parent="Menu/Menu/Options/VBoxContainer/HBoxContainer"]
+[node name="LoadChanges" type="Button" parent="Menu/Menu/OptionsControl/Apply/HBoxContainer"]
 margin_left = 99.0
 margin_right = 145.0
 margin_bottom = 21.0
 size_flags_horizontal = 3
 text = "Load"
 
-[node name="Autoload" type="CheckBox" parent="Menu/Menu/Options/VBoxContainer"]
+[node name="Autoload" type="CheckBox" parent="Menu/Menu/OptionsControl/Apply"]
 margin_top = 25.0
 margin_right = 145.0
 margin_bottom = 46.0
@@ -230,14 +924,14 @@ wait_time = 0.5
 [connection signal="pressed" from="Menu/Menu/MainPanel/VBoxContainer/Start" to="Menu/Menu" method="_on_Start_pressed"]
 [connection signal="pressed" from="Menu/Menu/MainPanel/VBoxContainer/Options" to="Menu/Menu" method="_on_Options_pressed"]
 [connection signal="pressed" from="Menu/Menu/MainPanel/VBoxContainer/Quit" to="Menu/Menu" method="_on_Quit_pressed"]
-[connection signal="text_changed" from="Menu/Menu/Options/Display/Dimensions/WidthLabel/Width" to="Menu/Menu" method="_on_ResWidth_text_changed"]
-[connection signal="text_changed" from="Menu/Menu/Options/Display/Dimensions/HeightLabel/Height" to="Menu/Menu" method="_on_ResHeight_text_changed"]
-[connection signal="pressed" from="Menu/Menu/Options/Display/Modes/Buttons/Windowed" to="Menu/Menu" method="_on_WindowedMode_pressed"]
-[connection signal="pressed" from="Menu/Menu/Options/Display/Modes/Buttons/Fullscreen" to="Menu/Menu" method="_on_FullscreenMode_pressed"]
-[connection signal="pressed" from="Menu/Menu/Options/Display/Modes/Buttons/Borderless" to="Menu/Menu" method="_on_BorderlessMode_pressed"]
-[connection signal="toggled" from="Menu/Menu/Options/Display/Modes/Buttons/VSync" to="Menu/Menu" method="_on_VSync_toggled"]
-[connection signal="pressed" from="Menu/Menu/Options/VBoxContainer/HBoxContainer/ApplyChanges" to="Menu/Menu" method="_on_ApplyChanges_pressed"]
-[connection signal="pressed" from="Menu/Menu/Options/VBoxContainer/HBoxContainer/SaveChanges" to="Menu/Menu" method="_on_SaveChanges_pressed"]
-[connection signal="pressed" from="Menu/Menu/Options/VBoxContainer/HBoxContainer/LoadChanges" to="Menu/Menu" method="_on_LoadChanges_pressed"]
-[connection signal="toggled" from="Menu/Menu/Options/VBoxContainer/Autoload" to="Menu/Menu" method="_on_Autoload_toggled"]
+[connection signal="text_changed" from="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions/Width/Width" to="Menu/Menu" method="_on_ResWidth_text_changed"]
+[connection signal="text_changed" from="Menu/Menu/OptionsControl/TabCon/Display/Display/Dimensions/Height/Height" to="Menu/Menu" method="_on_ResHeight_text_changed"]
+[connection signal="pressed" from="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons/Windowed" to="Menu/Menu" method="_on_WindowedMode_pressed"]
+[connection signal="pressed" from="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons/Fullscreen" to="Menu/Menu" method="_on_FullscreenMode_pressed"]
+[connection signal="pressed" from="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons/Borderless" to="Menu/Menu" method="_on_BorderlessMode_pressed"]
+[connection signal="toggled" from="Menu/Menu/OptionsControl/TabCon/Display/Display/Modes/Buttons/VSync" to="Menu/Menu" method="_on_VSync_toggled"]
+[connection signal="pressed" from="Menu/Menu/OptionsControl/Apply/HBoxContainer/ApplyChanges" to="Menu/Menu" method="_on_ApplyChanges_pressed"]
+[connection signal="pressed" from="Menu/Menu/OptionsControl/Apply/HBoxContainer/SaveChanges" to="Menu/Menu" method="_on_SaveChanges_pressed"]
+[connection signal="pressed" from="Menu/Menu/OptionsControl/Apply/HBoxContainer/LoadChanges" to="Menu/Menu" method="_on_LoadChanges_pressed"]
+[connection signal="toggled" from="Menu/Menu/OptionsControl/Apply/Autoload" to="Menu/Menu" method="_on_Autoload_toggled"]
 [connection signal="timeout" from="Menu/Menu/ApplyTimer" to="Menu/Menu" method="_on_ApplyTimer_timeout"]

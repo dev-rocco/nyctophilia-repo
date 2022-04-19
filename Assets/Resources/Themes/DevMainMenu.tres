@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=11 format=2]
+[gd_resource type="Theme" load_steps=14 format=2]
 
 [ext_resource path="res://Assets/Resources/Fonts/DynamicPresets/Montserrat.tres" type="DynamicFont" id=1]
 
@@ -25,6 +25,27 @@ bg_color = Color( 0, 0, 0, 0 )
 
 [sub_resource type="StyleBoxFlat" id=22]
 bg_color = Color( 0, 0, 0, 1 )
+
+[sub_resource type="StyleBoxFlat" id=28]
+bg_color = Color( 0, 0, 0, 1 )
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+expand_margin_left = 10.0
+expand_margin_right = 10.0
+
+[sub_resource type="StyleBoxFlat" id=30]
+bg_color = Color( 0.137482, 0.332031, 0.316257, 1 )
+expand_margin_left = 5.0
+expand_margin_right = 5.0
+
+[sub_resource type="StyleBoxFlat" id=29]
+content_margin_left = 5.0
+content_margin_right = 5.0
+bg_color = Color( 0.137482, 0.332031, 0.316257, 1 )
+expand_margin_top = 2.0
+shadow_size = 5
 
 [sub_resource type="StyleBoxFlat" id=24]
 
@@ -84,7 +105,39 @@ CheckButton/styles/hover = null
 CheckButton/styles/hover_pressed = null
 CheckButton/styles/normal = SubResource( 25 )
 CheckButton/styles/pressed = null
+LineEdit/colors/clear_button_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/clear_button_color_pressed = Color( 1, 1, 1, 1 )
+LineEdit/colors/cursor_color = Color( 0.94, 0.94, 0.94, 1 )
+LineEdit/colors/font_color = Color( 0.88, 0.88, 0.88, 1 )
+LineEdit/colors/font_color_selected = Color( 0, 0, 0, 1 )
+LineEdit/colors/font_color_uneditable = Color( 0.88, 0.88, 0.88, 0.5 )
+LineEdit/colors/selection_color = Color( 0.49, 0.49, 0.49, 1 )
+LineEdit/constants/minimum_spaces = 12
+LineEdit/fonts/font = null
+LineEdit/icons/clear = null
+LineEdit/styles/focus = null
+LineEdit/styles/normal = SubResource( 5 )
+LineEdit/styles/read_only = null
 Panel/styles/panel = SubResource( 22 )
+TabContainer/colors/font_color_bg = Color( 0.69, 0.69, 0.69, 1 )
+TabContainer/colors/font_color_disabled = Color( 0.9, 0.9, 0.9, 0.2 )
+TabContainer/colors/font_color_fg = Color( 0.94, 0.94, 0.94, 1 )
+TabContainer/constants/hseparation = 4
+TabContainer/constants/label_valign_bg = 2
+TabContainer/constants/label_valign_fg = 0
+TabContainer/constants/side_margin = 2
+TabContainer/constants/top_margin = 24
+TabContainer/fonts/font = null
+TabContainer/icons/decrement = null
+TabContainer/icons/decrement_highlight = null
+TabContainer/icons/increment = null
+TabContainer/icons/increment_highlight = null
+TabContainer/icons/menu = null
+TabContainer/icons/menu_highlight = null
+TabContainer/styles/panel = SubResource( 28 )
+TabContainer/styles/tab_bg = SubResource( 30 )
+TabContainer/styles/tab_disabled = SubResource( 5 )
+TabContainer/styles/tab_fg = SubResource( 29 )
 TextEdit/colors/background_color = Color( 0, 0, 0, 0 )
 TextEdit/colors/bookmark_color = Color( 0.08, 0.49, 0.98, 1 )
 TextEdit/colors/brace_mismatch_color = Color( 1, 0.2, 0.2, 1 )

@@ -98,6 +98,15 @@ Button/styles/focus = null
 Button/styles/hover = SubResource( 5 )
 Button/styles/normal = SubResource( 21 )
 Button/styles/pressed = SubResource( 6 )
+Label/colors/font_color = Color( 1, 1, 1, 1 )
+Label/colors/font_color_shadow = Color( 0, 0, 0, 0 )
+Label/colors/font_outline_modulate = Color( 1, 1, 1, 1 )
+Label/constants/line_spacing = 3
+Label/constants/shadow_as_outline = 0
+Label/constants/shadow_offset_x = 1
+Label/constants/shadow_offset_y = 1
+Label/fonts/font = ExtResource( 9 )
+Label/styles/normal = null
 Panel/styles/panel = SubResource( 22 )
 
 [sub_resource type="DynamicFont" id=19]
@@ -504,7 +513,6 @@ layer = 2
 
 [node name="PauseMenu" type="Control" parent="Camera/PMenu"]
 pause_mode = 2
-visible = false
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -592,7 +600,6 @@ margin_right = 138.0
 margin_bottom = 45.0
 size_flags_horizontal = 3
 size_flags_vertical = 3
-disabled = true
 text = "Menu"
 
 [node name="ToDesktop" type="Button" parent="Camera/PMenu/PauseMenu/Panel/Buttons/Quit"]
@@ -609,8 +616,9 @@ text = "Desktop"
 visible = false
 
 [node name="Light" type="Light2D" parent="WorldLighting"]
+visible = false
 texture = ExtResource( 7 )
-texture_scale = 0.75
+texture_scale = 0.3
 shadow_enabled = true
 
 [node name="CanvasModulate" type="CanvasModulate" parent="WorldLighting"]

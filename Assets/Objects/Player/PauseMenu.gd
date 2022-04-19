@@ -32,8 +32,10 @@ func _on_Load_pressed():
 
 
 func _on_QuitToMenu_pressed():
-	get_tree().change_scene("res://Scenes/DevMainMenu.tscn")
+	var _DISC_CS = get_tree().change_scene("res://Scenes/DevMainMenu.tscn")
 func _on_QuitToDesktop_pressed():
+	if paused:
+		toggle_pause()
 	get_tree().quit()
 
 

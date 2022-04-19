@@ -68,6 +68,9 @@ onready var health_bar = $Camera/UI/Bars/HealthBar
 onready var health_bar_max = health_bar.rect_size.x
 onready var oxygen_bar = $Camera/UI/Bars/OxygenBar
 onready var oxygen_bar_max = oxygen_bar.rect_size.x
+# flashlight
+onready var flashlight = $WorldLighting/Light
+var flashlight_enabled = false
 ###############################
 onready var cscene = get_tree().current_scene
 
@@ -99,7 +102,7 @@ var in_water_starty = null
 var being_attacked = false
 func try_enemy():
 	if world_lighting_enabled:
-		fake_enemy.decide_attack()
+		#fake_enemy.decide_attack()
 		enemy_try_timer.start(sanity/2)
 	else:
 		enemy_try_timer.stop()
@@ -125,10 +128,10 @@ onready var temp_light = world_lighting.get_node("Light")
 onready var temp_cm = world_lighting.get_node("CanvasModulate")
 func enable_world_lighting(delta):
 	temp_light.energy = lerp(temp_light.energy, 1, world_lighting_changespeed * delta)
-	temp_cm.color = lerp(temp_cm.color, Color(0,0,0,1), world_lighting_changespeed * delta)
+	#temp_cm.color = lerp(temp_cm.color, Color(0,0,0,1), world_lighting_changespeed * delta)
 func disable_world_lighting(delta):
 	temp_light.energy = lerp(temp_light.energy, 0, world_lighting_changespeed * delta)
-	temp_cm.color = lerp(temp_cm.color, Color(1,1,1,1), world_lighting_changespeed * delta)
+	#temp_cm.color = lerp(temp_cm.color, Color(1,1,1,1), world_lighting_changespeed * delta)
 ########################################
 
 # Main #
@@ -136,6 +139,8 @@ export(NodePath) var fake_enemy_path
 var fake_enemy
 func _ready():
 	UI_control.visible = true
+	flashlight.visible = true
+	world_lighting_enabled = false
 	blackout_animator.get_parent().visible = true
 	blackout_animator.play("BlackFadeOut")
 	world_lighting.visible = true
@@ -155,10 +160,14 @@ func _input(event):
 		if event.is_action_pressed("move_left"):
 			facing_dir = "l"
 		
-		# enemy debug
+		# flashlight
 		if event.is_action_pressed("flashlight_toggle"):
-			fake_enemy.attack()
+			if !world_lighting_enabled:
+				world_lighting_enabled = true
+			elif world_lighting_enabled:
+				world_lighting_enabled = false
 
+const DEBUG_MODE = true
 func _process(delta):
 	# Upgrades updater (pretty fucking slow but idgaf cos am dead hard)
 	true_oxygen_depletion_rate = starting_oxygen_depletion_rate - (cscene.get_store_level("oxygen") / 2)
@@ -174,8 +183,8 @@ func _process(delta):
 		health -= (starting_oxygen_depletion_rate * 3) * delta
 	
 	# Death check
-	#if health <= 0:
-	#	dying()
+	if health <= 0 and !DEBUG_MODE:
+		dying()
 	
 	# Water lighting (darkness)
 	if world_lighting_enabled:
